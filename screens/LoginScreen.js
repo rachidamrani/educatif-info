@@ -1,5 +1,6 @@
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
 import logo from '../assets/learner.jpg'
+import Input from '../components/Input'
 
 const LoginScreen = () => {
   const { height } = useWindowDimensions()
@@ -8,8 +9,10 @@ const LoginScreen = () => {
       <Image
         source={logo}
         resizeMode='contain'
-        style={[styles.logo, { height: height * 0.3 }]}
+        style={[styles.logo, { height: height * 0.4 }]}
       />
+      <Input placeholder='Email' />
+      <Input placeholder='Password' secureTextEntry={true} />
     </View>
   )
 }
@@ -20,10 +23,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
-    // backgroundColor: 'gray',
+    width: '100%',
   },
   logo: {
-    marginVertical: 5,
+    // marginVertical: 5,
+    width: '100%',
+    maxWidth: 300,
+    maxHeight: 300,
   },
 })
