@@ -1,18 +1,16 @@
 import { Pressable, StyleSheet, Text } from 'react-native'
 import React from 'react'
 
-const Button = () => {
-  function handleSignIn() {}
-
+const Button = ({ title, onClick }) => {
   return (
     <Pressable
       style={({ pressed }) => [
         styles.btnContainer,
         pressed && styles.pressedBtn,
       ]}
-      onPress={handleSignIn}
+      onPress={onClick}
     >
-      <Text style={styles.btnText}>Se connecter</Text>
+      <Text style={styles.btnText}>{title}</Text>
     </Pressable>
   )
 }
