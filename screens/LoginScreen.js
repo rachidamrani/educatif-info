@@ -36,12 +36,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    width: '100%',
   },
   logo: {
-    // marginVertical: 5,
     width: '100%',
     maxWidth: 300,
     maxHeight: 300,
+    marginBottom: 20,
   },
 })
