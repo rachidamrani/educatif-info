@@ -1,5 +1,6 @@
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
 import logo from '../assets/learner.jpg'
+import Button from '../components/Button'
 import Input from '../components/Input'
 
 const LoginScreen = () => {
@@ -18,10 +19,11 @@ const LoginScreen = () => {
       />
       <Input
         config={{
-          placeholder: 'Password',
+          placeholder: 'Mot de passe',
           secureTextEntry: true,
         }}
       />
+      <Button />
     </View>
   )
 }
