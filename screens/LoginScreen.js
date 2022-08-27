@@ -3,8 +3,13 @@ import logo from '../assets/learner.jpg'
 import Button from '../components/Button'
 import Input from '../components/Input'
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const { height } = useWindowDimensions()
+
+  function handleLogin() {
+    navigation.navigate('WelcomeScreen')
+  }
+
   return (
     <View style={styles.container}>
       <Image
@@ -23,7 +28,7 @@ const LoginScreen = () => {
           secureTextEntry: true,
         }}
       />
-      <Button />
+      <Button onClick={handleLogin} title='Se connecter' />
     </View>
   )
 }
@@ -33,7 +38,7 @@ export default LoginScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
