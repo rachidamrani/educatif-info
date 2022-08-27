@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
 import logo from '../assets/learner.jpg'
 import { AuthContext } from '../auth-context/auth'
@@ -8,10 +8,18 @@ import Input from '../components/Input'
 const LoginScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const [email, setEmail] = useState('test@test.com')
+  const [password, setPassword] = useState('123456')
+
   const { height } = useWindowDimensions()
 
-  function handleLogin() {
-    navigation.navigate('WelcomeScreen')
+  async function handleSubmit() {
+    // Validate email and password before submiting!
+    setIsLoading(true)
+    await authCtx.login(email, password)
+    setIsLoading(false)
   }
 
   return (
@@ -24,15 +32,27 @@ const LoginScreen = ({ navigation }) => {
       <Input
         config={{
           placeholder: 'Email',
+          value: email,
+          autoCapitalize: 'none',
+          onChangeText: (enteredEmail) => {
+            setEmail(enteredEmail)
+          },
         }}
       />
       <Input
         config={{
           placeholder: 'Mot de passe',
           secureTextEntry: true,
+          value: password,
+          onChangeText: (enteredPassword) => {
+            setPassword(enteredPassword)
+          },
         }}
       />
-      <Button onClick={handleLogin} title='Se connecter' />
+      <Button
+        onClick={handleSubmit}
+        title={`${isLoading ? 'Connexion ...' : 'Se connecter'}`}
+      />
     </View>
   )
 }

@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 
 import { AntDesign } from '@expo/vector-icons'
+import { AuthContext } from '../auth-context/auth'
 
 const WelcomeScreen = ({ navigation }) => {
+  const authCtx = useContext(AuthContext)
+
   function logout() {
-    console.log('loging you out ...')
+    authCtx.logout()
   }
 
   useLayoutEffect(() => {

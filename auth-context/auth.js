@@ -11,8 +11,9 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState()
 
-  function login(email, password) {
-    authenticate(email, password)
+  async function login(email, password) {
+    const token = await authenticate(email, password)
+    setAuthToken(token)
   }
 
   function logout() {
