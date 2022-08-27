@@ -4,9 +4,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import WelcomeScreen from './screens/WelcomeScreen'
 
+import AuthContextProvider, { AuthContext } from './auth-context/auth'
+import { useContext } from 'react'
+
 const Stack = createNativeStackNavigator()
 
 function Navigation() {
+  const authCtx = useContext(AuthContext)
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -39,9 +44,9 @@ function Navigation() {
 
 export default function App() {
   return (
-    <>
+    <AuthContextProvider>
       <Navigation />
       <StatusBar style='light' backgroundColor='black' />
-    </>
+    </AuthContextProvider>
   )
 }

@@ -15,6 +15,7 @@ const WelcomeScreen = ({ navigation }) => {
       ),
     })
   }, [])
+
   return (
     <View style={styles.container}>
       <Text>WelcomeScreen</Text>

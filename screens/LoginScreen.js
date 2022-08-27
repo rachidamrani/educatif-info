@@ -1,9 +1,13 @@
+import { useContext } from 'react'
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
 import logo from '../assets/learner.jpg'
+import { AuthContext } from '../auth-context/auth'
 import Button from '../components/Button'
 import Input from '../components/Input'
 
 const LoginScreen = ({ navigation }) => {
+  const authCtx = useContext(AuthContext)
+
   const { height } = useWindowDimensions()
 
   function handleLogin() {
