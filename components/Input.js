@@ -13,7 +13,7 @@ export default Input
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '90%',
     marginBottom: 9,
   },
   input: {

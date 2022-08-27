@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B71F3',
     padding: 12,
     borderRadius: 10,
-    width: '100%',
+    width: '90%',
     marginVertical: 10,
   },
   btnText: {
