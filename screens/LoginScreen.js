@@ -11,8 +11,17 @@ const LoginScreen = () => {
         resizeMode='contain'
         style={[styles.logo, { height: height * 0.4 }]}
       />
-      <Input placeholder='Email' />
-      <Input placeholder='Password' secureTextEntry={true} />
+      <Input
+        config={{
+          placeholder: 'Email',
+        }}
+      />
+      <Input
+        config={{
+          placeholder: 'Password',
+          secureTextEntry: true,
+        }}
+      />
     </View>
   )
 }
