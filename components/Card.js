@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 8,
+    elevation: 5,
     borderRadius: 5,
     padding: 10,
     shadowColor: '#000',

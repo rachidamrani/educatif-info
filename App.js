@@ -5,11 +5,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DashBoardScreen from './screens/DashBoardScreen'
 import Profile from './screens/Profile'
-
-import AuthContextProvider, { AuthContext } from './auth-context/auth'
+import AuthContextProvider, { AuthContext } from './store/auth-context'
 
 import { Provider as PaperProvider } from 'react-native-paper'
+
 import Registration from './screens/Registration'
+
+import { Provider } from 'react-redux'
+import { store } from './store/adherents'
+import { addNewAdherent, removeAdherent } from './store/adherents/adherentSlice'
 
 const Stack = createNativeStackNavigator()
 
@@ -72,6 +76,7 @@ function AuthenticatedStack() {
 
 function Navigation() {
   const authCtx = useContext(AuthContext)
+
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
@@ -82,11 +87,13 @@ function Navigation() {
 
 export default function App() {
   return (
-    <AuthContextProvider>
-      <PaperProvider>
-        <StatusBar style='light' backgroundColor='black' />
-        <Navigation />
-      </PaperProvider>
-    </AuthContextProvider>
+    <Provider store={store}>
+      <AuthContextProvider>
+        <PaperProvider>
+          <StatusBar style='light' backgroundColor='black' />
+          <Navigation />
+        </PaperProvider>
+      </AuthContextProvider>
+    </Provider>
   )
 }

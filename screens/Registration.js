@@ -1,10 +1,17 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Button } from 'react-native-paper'
+import { useDispatch } from 'react-redux'
 
-const Registration = () => {
+import {
+  addNewAdherent,
+  removeAdherent,
+} from '../store/adherents/adherentSlice'
+
+const Registration = ({ navigation }) => {
+  const dispatch = useDispatch()
+
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.titleContainer}>
         <Text variant='titleLarge' style={styles.title}>
           Nouveau adhérant
@@ -61,6 +68,7 @@ const Registration = () => {
           activeOutlineColor='dodgerblue'
           style={styles.input}
         />
+
         <TextInput
           label='Téléphone'
           onChangeText={() => {}}
@@ -70,6 +78,7 @@ const Registration = () => {
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          keyboardType='number-pad'
         />
         <TextInput
           label="Date d'inscription"
@@ -81,17 +90,19 @@ const Registration = () => {
           activeOutlineColor='dodgerblue'
           style={styles.input}
         />
+
         <Button
           icon='account-plus'
           mode='contained-tonal'
-          onPress={() => console.log('Pressed')}
+          onPress={() => navigation.navigate('Profile')}
           buttonColor='#3B71F3'
           textColor='#fff'
+          style={styles.submitBtn}
         >
           Ajouter
         </Button>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -99,7 +110,7 @@ export default Registration
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     padding: 10,
     alignItems: 'center',
   },
@@ -117,5 +128,8 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
+  },
+  submitBtn: {
+    marginTop: 6,
   },
 })

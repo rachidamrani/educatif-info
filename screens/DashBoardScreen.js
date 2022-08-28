@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 import React, { useContext, useLayoutEffect, useState } from 'react'
 
-import { AntDesign } from '@expo/vector-icons'
-import { AuthContext } from '../auth-context/auth'
+import { Ionicons } from '@expo/vector-icons'
+import { AuthContext } from '../store/auth-context'
 
 import { Text, Button } from 'react-native-paper'
 
@@ -15,7 +15,14 @@ const DashBoardScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <AntDesign name='logout' size={24} onPress={logout} />,
+      headerRight: () => (
+        <Ionicons
+          name='exit-outline'
+          size={24}
+          color='black'
+          onPress={logout}
+        />
+      ),
     })
   }, [])
 

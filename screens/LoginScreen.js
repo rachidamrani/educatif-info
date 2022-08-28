@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
 import logo from '../assets/learner.jpg'
-import { AuthContext } from '../auth-context/auth'
+import { AuthContext } from '../store/auth-context'
 import Button from '../components/Button'
 import Input from '../components/Input'
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({}) => {
   const authCtx = useContext(AuthContext)
 
   const [isLoading, setIsLoading] = useState(false)
