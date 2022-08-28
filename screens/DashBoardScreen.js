@@ -1,13 +1,15 @@
+import React, { useContext, useLayoutEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
-import React, { useContext, useLayoutEffect, useState } from 'react'
-
+import { Text, Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
 
-import { Text, Button } from 'react-native-paper'
+import { useSelector } from 'react-redux'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
+
+  const { adherents } = useSelector((state) => state)
 
   function logout() {
     authCtx.logout()
@@ -28,16 +30,28 @@ const DashBoardScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.info}>
-        La liste des adhérants est vide pour le moment
-      </Text>
+      <View style={styles.infos}>
+        <Chip
+          icon='information'
+          style={{ flexBasis: '92%' }}
+          onPress={() => {
+            navigation.navigate('AdherentsList')
+          }}
+        >
+          <Text style={{ fontSize: 17 }}>Nombre des adhérants</Text>
+        </Chip>
+        <View style={{ alignSelf: 'center' }}>
+          <Badge size={27}>{adherents.length}</Badge>
+        </View>
+      </View>
+
       <Button
         mode='contained-tonal'
         onPress={() => navigation.navigate('RegistrationScreen')}
         buttonColor='#3B71F3'
         textColor='#fff'
       >
-        Nouveau adhérant
+        Nouveau Adhérant
       </Button>
     </View>
   )
@@ -51,7 +65,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
-  info: {
-    marginVertical: 20,
+  infos: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+    width: '98%',
   },
 })
