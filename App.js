@@ -4,12 +4,12 @@ import LoginScreen from './screens/LoginScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DashBoardScreen from './screens/DashBoardScreen'
-import Profile from './screens/Profile'
+import Profile from './screens/ProfileScreen'
 import AuthContextProvider, { AuthContext } from './store/auth-context'
 
 import { Provider as PaperProvider } from 'react-native-paper'
 
-import Registration from './screens/Registration'
+import RegistrationScreen from './screens/RegistrationScreen'
 
 import { Provider } from 'react-redux'
 import { store } from './store/adherents'
@@ -55,15 +55,15 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen
-        name='Registration'
-        component={Registration}
+        name='RegistrationScreen'
+        component={RegistrationScreen}
         options={{
           headerTitle: 'Inscription',
           animation: 'slide_from_right',
         }}
       />
       <Stack.Screen
-        name='Profile'
+        name='ProfileScreen'
         component={Profile}
         options={{
           headerTitle: 'Profile',

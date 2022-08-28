@@ -10,6 +10,12 @@ import {
 const Registration = ({ navigation }) => {
   const dispatch = useDispatch()
 
+  function handleSubmit() {
+    // Validate inputs then :
+    dispatch(addNewAdherent())
+    navigation.navigate('ProfileScreen')
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.titleContainer}>
@@ -94,7 +100,7 @@ const Registration = ({ navigation }) => {
         <Button
           icon='account-plus'
           mode='contained-tonal'
-          onPress={() => navigation.navigate('Profile')}
+          onPress={handleSubmit}
           buttonColor='#3B71F3'
           textColor='#fff'
           style={styles.submitBtn}
