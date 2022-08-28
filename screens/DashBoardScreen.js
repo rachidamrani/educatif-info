@@ -33,7 +33,7 @@ const DashBoardScreen = ({ navigation }) => {
       </Text>
       <Button
         mode='contained-tonal'
-        onPress={() => navigation.navigate('Registration')}
+        onPress={() => navigation.navigate('RegistrationScreen')}
         buttonColor='#3B71F3'
         textColor='#fff'
       >
