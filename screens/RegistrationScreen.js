@@ -1,19 +1,47 @@
+import { useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Button } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
 
-import {
-  addNewAdherent,
-  removeAdherent,
-} from '../store/adherents/adherentSlice'
+import { v4 as getRandomId } from 'uuid'
+import 'react-native-get-random-values'
+
+import { addNewAdherent } from '../store/adherents/adherentSlice'
 
 const Registration = ({ navigation }) => {
+  const [values, setInputValues] = useState({
+    firstname: '',
+    lastname: '',
+    level: '',
+    responsible: '',
+    dateOfBirth: '',
+    phone: '',
+    registrationDate: '',
+  })
+
   const dispatch = useDispatch()
 
   function handleSubmit() {
-    // Validate inputs then :
-    dispatch(addNewAdherent())
+    const newAdherent = {
+      id: '',
+      firstname: values.firstname,
+      lastname: values.lastname,
+      level: values.level,
+      responsible: values.responsible,
+      dateOfBirth: values.dateOfBirth,
+      phone: values.phone,
+      registrationDate: values.registrationDate,
+    }
+
+    dispatch(addNewAdherent({ ...newAdherent, id: getRandomId() }))
     navigation.navigate('ProfileScreen')
+  }
+
+  function handleChange(name, value) {
+    setInputValues((prevInputs) => ({
+      ...prevInputs,
+      [name]: [value],
+    }))
   }
 
   return (
@@ -26,58 +54,67 @@ const Registration = ({ navigation }) => {
       <View style={styles.inputsContainer}>
         <TextInput
           label='Nom'
-          onChangeText={() => {}}
+          onChangeText={(firstname) => handleChange('firstname', firstname)}
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.firstname}
         />
         <TextInput
           label='Prénom'
-          onChangeText={() => {}}
+          onChangeText={(lastname) => handleChange('lastname', lastname)}
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.lastname}
         />
         <TextInput
           label='Niveau'
-          onChangeText={() => {}}
+          onChangeText={(level) => handleChange('level', level)}
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.level}
         />
         <TextInput
           label='Responsable légal'
-          onChangeText={() => {}}
+          onChangeText={(responsible) =>
+            handleChange('responsible', responsible)
+          }
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.responsible}
         />
         <TextInput
           label='Date de naissane'
-          onChangeText={() => {}}
+          onChangeText={(dateOfBirth) =>
+            handleChange('dateOfBirth', dateOfBirth)
+          }
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.dateOfBirth}
         />
 
         <TextInput
           label='Téléphone'
-          onChangeText={() => {}}
+          onChangeText={(phone) => handleChange('phone', phone)}
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
@@ -85,16 +122,20 @@ const Registration = ({ navigation }) => {
           activeOutlineColor='dodgerblue'
           style={styles.input}
           keyboardType='number-pad'
+          value={values.phone}
         />
         <TextInput
           label="Date d'inscription"
-          onChangeText={() => {}}
+          onChangeText={(registrationDate) =>
+            handleChange('registrationDate', registrationDate)
+          }
           autoFocus={false}
           mode='outlined'
           selectionColor='#e8e8e8'
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
+          value={values.registrationDate}
         />
 
         <Button
