@@ -19,5 +19,3 @@ export async function authenticate(email, password) {
     )
   }
 }
-
-export const levels = ['Primaire', 'Collège', 'Lycée']
