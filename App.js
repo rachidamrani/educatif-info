@@ -1,11 +1,15 @@
+import { useContext } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import LoginScreen from './screens/LoginScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import WelcomeScreen from './screens/WelcomeScreen'
+import DashBoardScreen from './screens/DashBoardScreen'
+import Profile from './screens/Profile'
 
 import AuthContextProvider, { AuthContext } from './auth-context/auth'
-import { useContext, useState } from 'react'
+
+import { Provider as PaperProvider } from 'react-native-paper'
+import Registration from './screens/Registration'
 
 const Stack = createNativeStackNavigator()
 
@@ -40,11 +44,26 @@ function AuthenticatedStack() {
       }}
     >
       <Stack.Screen
-        name='WelcomeScreen'
-        component={WelcomeScreen}
+        name='DashBoardScreen'
+        component={DashBoardScreen}
         options={{
-          animation: 'slide_from_right',
           headerTitle: 'Tableau de bord',
+        }}
+      />
+      <Stack.Screen
+        name='Registration'
+        component={Registration}
+        options={{
+          headerTitle: 'Inscription',
+          animation: 'slide_from_right',
+        }}
+      />
+      <Stack.Screen
+        name='Profile'
+        component={Profile}
+        options={{
+          headerTitle: 'Profile',
+          animation: 'fade_from_bottom',
         }}
       />
     </Stack.Navigator>
@@ -64,8 +83,10 @@ function Navigation() {
 export default function App() {
   return (
     <AuthContextProvider>
-      <StatusBar style='light' backgroundColor='black' />
-      <Navigation />
+      <PaperProvider>
+        <StatusBar style='light' backgroundColor='black' />
+        <Navigation />
+      </PaperProvider>
     </AuthContextProvider>
   )
 }
