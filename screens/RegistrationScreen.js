@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Button } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
 
@@ -7,6 +7,7 @@ import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
 import { addNewAdherent } from '../store/adherents/adherentSlice'
+import { validatePhone } from '../utils'
 
 const Registration = ({ navigation }) => {
   const [values, setInputValues] = useState({
@@ -16,25 +17,32 @@ const Registration = ({ navigation }) => {
     responsible: '',
     dateOfBirth: '',
     phone: '',
-    registrationDate: '',
   })
 
   const dispatch = useDispatch()
 
   function handleSubmit() {
     const newAdherent = {
-      id: '',
       firstname: values.firstname,
       lastname: values.lastname,
       level: values.level,
       responsible: values.responsible,
       dateOfBirth: values.dateOfBirth,
       phone: values.phone,
-      registrationDate: values.registrationDate,
+      registrationDate: Date(),
     }
 
-    dispatch(addNewAdherent({ ...newAdherent, id: getRandomId() }))
-    navigation.navigate('ProfileScreen')
+    if (validatePhone(values.phone)) {
+      dispatch(
+        addNewAdherent({
+          ...newAdherent,
+          id: getRandomId(),
+        })
+      )
+      navigation.navigate('ProfileScreen')
+    } else {
+      Alert.alert('Attention', 'Numéro de téléphone incorrect !')
+    }
   }
 
   function handleChange(name, value) {
@@ -121,23 +129,9 @@ const Registration = ({ navigation }) => {
           outlineColor='black'
           activeOutlineColor='dodgerblue'
           style={styles.input}
-          keyboardType='number-pad'
+          keyboardType='name-phone-pad'
           value={values.phone}
         />
-        <TextInput
-          label="Date d'inscription"
-          onChangeText={(registrationDate) =>
-            handleChange('registrationDate', registrationDate)
-          }
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.registrationDate}
-        />
-
         <Button
           icon='account-plus'
           mode='contained-tonal'
