@@ -10,10 +10,10 @@ import AuthContextProvider, { AuthContext } from './store/auth-context'
 import { Provider as PaperProvider } from 'react-native-paper'
 
 import RegistrationScreen from './screens/RegistrationScreen'
+import AdherentsList from './screens/AdherentsList'
 
 import { Provider } from 'react-redux'
 import { store } from './store/adherents'
-import { addNewAdherent, removeAdherent } from './store/adherents/adherentSlice'
 
 const Stack = createNativeStackNavigator()
 
@@ -67,6 +67,14 @@ function AuthenticatedStack() {
         component={Profile}
         options={{
           headerTitle: 'Profile',
+          animation: 'fade_from_bottom',
+        }}
+      />
+      <Stack.Screen
+        name='AdherentsList'
+        component={AdherentsList}
+        options={{
+          headerTitle: 'List des adhérants',
           animation: 'fade_from_bottom',
         }}
       />
