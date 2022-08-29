@@ -33,13 +33,16 @@ const Registration = ({ navigation }) => {
     }
 
     if (validatePhone(values.phone)) {
+      const id = getRandomId()
       dispatch(
         addNewAdherent({
           ...newAdherent,
-          id: getRandomId(),
+          id: id,
         })
       )
-      navigation.navigate('ProfileScreen')
+      navigation.navigate('ProfileScreen', {
+        adherentId: id,
+      })
     } else {
       Alert.alert('Attention', 'Numéro de téléphone incorrect !')
     }
