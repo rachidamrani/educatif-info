@@ -11,12 +11,12 @@ import { validatePhone } from '../utils'
 
 const Registration = ({ navigation }) => {
   const [values, setInputValues] = useState({
-    firstname: '',
+    firstname: 'Rachid',
     lastname: '',
     level: '',
     responsible: '',
     dateOfBirth: '',
-    phone: '',
+    phone: '0666911974',
   })
 
   const dispatch = useDispatch()
@@ -53,7 +53,10 @@ const Registration = ({ navigation }) => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.titleContainer}>
         <Text variant='titleLarge' style={styles.title}>
           Nouveau adhérant

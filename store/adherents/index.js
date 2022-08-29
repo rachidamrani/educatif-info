@@ -3,6 +3,6 @@ import adherentReducer from './adherentSlice'
 
 export const store = configureStore({
   reducer: {
-    adherent: adherentReducer,
+    adherents: adherentReducer,
   },
 })

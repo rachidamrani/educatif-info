@@ -5,7 +5,7 @@ const adherentSlice = createSlice({
   initialState: [],
   reducers: {
     addNewAdherent: (state, action) => {
-      console.log('addNewAdherent')
+      state.push(action.payload)
     },
     removeAdherent: (state, action) => {
       console.log('removeAdherent')

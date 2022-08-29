@@ -1,10 +1,11 @@
 import React, { useContext, useLayoutEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Text, Button, Chip, Badge } from 'react-native-paper'
+import { Pressable, StyleSheet, View } from 'react-native'
+import { Text, Button, Chip, Badge, Divider } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
 
 import { useSelector } from 'react-redux'
+import Levels from '../components/Levels'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
@@ -53,6 +54,13 @@ const DashBoardScreen = ({ navigation }) => {
       >
         Nouveau Adhérant
       </Button>
+
+      <View style={{ alignItems: 'center' }}>
+        <Text variant='headlineMedium' style={styles.levels}>
+          Niveaux Scolaires
+        </Text>
+        <Levels />
+      </View>
     </View>
   )
 }
@@ -68,7 +76,11 @@ const styles = StyleSheet.create({
   infos: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 15,
     width: '98%',
+  },
+  levels: {
+    marginTop: 20,
+    marginBottom: 12,
   },
 })
