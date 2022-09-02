@@ -3,7 +3,7 @@ import React from 'react'
 
 const PrimaireScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>PrimaireScreen</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const PrimaireScreen = () => {
 
 export default PrimaireScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})

@@ -6,7 +6,7 @@ const LyceeScreen = () => {
   const { adherents } = useSelector((state) => state)
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>LyceeScreen</Text>
     </View>
   )
@@ -14,4 +14,10 @@ const LyceeScreen = () => {
 
 export default LyceeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})
