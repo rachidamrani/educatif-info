@@ -1,13 +1,26 @@
+import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 
 import { levels } from '../utils'
 
 const Levels = () => {
+  const navigation = useNavigation()
+
+  function navigateToLevelScreen(screenName) {
+    if (screenName === 'Lycée') {
+      navigation.navigate('LyceeScreen')
+    } else if (screenName === 'Collège') {
+      navigation.navigate('CollegeScreen')
+    } else if (screenName === 'Primaire') {
+      navigation.navigate('PrimaireScreen')
+    }
+  }
+
   return (
     <View style={styles.levelSection}>
       {levels.map((level) => (
         <Pressable
-          onPress={() => {}}
+          onPress={() => navigateToLevelScreen(level.title)}
           style={({ pressed }) => [
             styles.levelPressable,
             { backgroundColor: level.color },
