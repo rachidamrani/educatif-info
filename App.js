@@ -14,6 +14,9 @@ import AdherentsList from './screens/AdherentsList'
 
 import { Provider } from 'react-redux'
 import { store } from './store/adherents'
+import LyceeScreen from './screens/LyceeScreen'
+import CollegeScreen from './screens/CollegeScreen'
+import PrimaireScreen from './screens/PrimaireScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -38,6 +41,7 @@ function AuthStack() {
   )
 }
 
+// Render this component when user is connected
 function AuthenticatedStack() {
   return (
     <Stack.Navigator
@@ -59,7 +63,7 @@ function AuthenticatedStack() {
         component={RegistrationScreen}
         options={{
           headerTitle: 'Inscription',
-          animation: 'slide_from_right',
+          animation: 'slide_from_bottom',
         }}
       />
       <Stack.Screen
@@ -67,15 +71,39 @@ function AuthenticatedStack() {
         component={Profile}
         options={{
           headerTitle: 'Profile',
-          animation: 'fade_from_bottom',
+          animation: 'flip',
         }}
       />
       <Stack.Screen
         name='AdherentsList'
         component={AdherentsList}
         options={{
-          headerTitle: 'List des adhérants',
+          headerTitle: 'Liste des adhérants',
           animation: 'fade_from_bottom',
+        }}
+      />
+      <Stack.Screen
+        name='LyceeScreen'
+        component={LyceeScreen}
+        options={{
+          headerTitle: 'Liste des lycéens',
+          animation: 'fade',
+        }}
+      />
+      <Stack.Screen
+        name='CollegeScreen'
+        component={CollegeScreen}
+        options={{
+          headerTitle: 'Liste des collégiens',
+          animation: 'fade',
+        }}
+      />
+      <Stack.Screen
+        name='PrimaireScreen'
+        component={PrimaireScreen}
+        options={{
+          headerTitle: 'Liste des écoliers',
+          animation: 'fade',
         }}
       />
     </Stack.Navigator>
