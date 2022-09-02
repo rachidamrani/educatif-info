@@ -1,9 +1,10 @@
 import React, { useContext, useLayoutEffect } from 'react'
 import { Pressable, StyleSheet, View } from 'react-native'
-import { Text, Button, Chip, Badge, Divider } from 'react-native-paper'
+import { Text, Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
 
+import Divider from '../components/Divider'
 import { useSelector } from 'react-redux'
 import Levels from '../components/Levels'
 
@@ -39,7 +40,7 @@ const DashBoardScreen = ({ navigation }) => {
             navigation.navigate('AdherentsList')
           }}
         >
-          <Text style={{ fontSize: 17 }}>Nombre des adhérants</Text>
+          <Text style={{ fontSize: 17 }}>Nombre total des adhérants</Text>
         </Chip>
         <View style={{ alignSelf: 'center' }}>
           <Badge size={27}>{adherents.length}</Badge>
@@ -55,11 +56,21 @@ const DashBoardScreen = ({ navigation }) => {
         Nouveau Adhérant
       </Button>
 
+      <Divider />
+
       <View style={{ alignItems: 'center' }}>
         <Text variant='headlineMedium' style={styles.levels}>
-          Niveaux Scolaires
+          Catégories
         </Text>
         <Levels />
+      </View>
+
+      <Divider />
+
+      <View style={{ alignItems: 'center' }}>
+        <Text variant='headlineSmall' style={styles.levels}>
+          Adhérents ajoutés récemment
+        </Text>
       </View>
     </View>
   )
@@ -80,7 +91,7 @@ const styles = StyleSheet.create({
     width: '98%',
   },
   levels: {
-    marginTop: 20,
-    marginBottom: 12,
+    marginBottom: 10,
+    fontWeight: 'bold',
   },
 })
