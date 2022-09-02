@@ -1,5 +1,5 @@
 import React, { useContext, useLayoutEffect } from 'react'
-import { Pressable, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import { Text, Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
@@ -13,7 +13,6 @@ const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
 
   const { adherents } = useSelector((state) => state)
-  console.log(adherents)
 
   function logout() {
     authCtx.logout()
@@ -70,16 +69,16 @@ const DashBoardScreen = ({ navigation }) => {
       <Divider />
 
       <View style={{ alignItems: 'center' }}>
-        <Text variant='headlineSmall' style={styles.levels}>
-          Adhérents ajoutés récemment
+        <Text variant='headlineSmall' style={{ marginBottom: 15 }}>
+          Adhérants récemment inscrits
         </Text>
       </View>
-      {adherents
-        .slice()
-        .reverse()
-        .map((item) => (
-          <AdherentItem key={item.id} item={item} />
-        ))}
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.latestItems}
+        data={adherents.slice().reverse().slice(0, 10)}
+        renderItem={({ item }) => <AdherentItem key={item.id} item={item} />}
+      ></FlatList>
     </View>
   )
 }
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 10,
+    paddingBottom: 20,
   },
   infos: {
     flexDirection: 'row',
@@ -101,5 +101,9 @@ const styles = StyleSheet.create({
   levels: {
     marginBottom: 10,
     fontWeight: 'bold',
+  },
+  latestItems: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
