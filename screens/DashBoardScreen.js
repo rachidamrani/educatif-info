@@ -7,11 +7,13 @@ import { AuthContext } from '../store/auth-context'
 import Divider from '../components/Divider'
 import { useSelector } from 'react-redux'
 import Levels from '../components/Levels'
+import AdherentItem from '../components/AdherentItem'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
 
   const { adherents } = useSelector((state) => state)
+  console.log(adherents)
 
   function logout() {
     authCtx.logout()
@@ -72,6 +74,12 @@ const DashBoardScreen = ({ navigation }) => {
           Adhérents ajoutés récemment
         </Text>
       </View>
+      {adherents
+        .slice()
+        .reverse()
+        .map((item) => (
+          <AdherentItem key={item.id} item={item} />
+        ))}
     </View>
   )
 }
