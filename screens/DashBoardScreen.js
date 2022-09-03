@@ -8,6 +8,7 @@ import Divider from '../components/Divider'
 import { useSelector } from 'react-redux'
 import Levels from '../components/Levels'
 import AdherentItem from '../components/AdherentItem'
+import Search from '../components/Search'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
@@ -48,15 +49,18 @@ const DashBoardScreen = ({ navigation }) => {
         </View>
       </View>
 
+      <Search />
+
       <Button
         mode='contained-tonal'
         onPress={() => navigation.navigate('RegistrationScreen')}
         buttonColor='#3B71F3'
         textColor='#fff'
+        icon='plus'
+        style={styles.addBtn}
       >
         Nouveau Adhérant
       </Button>
-
       <Divider />
 
       <View style={{ alignItems: 'center' }}>
@@ -105,5 +109,9 @@ const styles = StyleSheet.create({
   latestItems: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  addBtn: {
+    // marginBottom: 10,
+    marginTop: 5,
   },
 })
