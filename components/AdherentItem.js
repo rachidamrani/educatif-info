@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Pressable, StyleSheet, Text } from 'react-native'
+import { Dimensions } from 'react-native'
 
 const AdherentItem = ({ item }) => {
   const navigation = useNavigation()
@@ -30,8 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#F4F1F1',
-    width: 360,
-    maxWidth: 380,
+    width: Dimensions.get('window').width * 0.93,
     borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 5,
