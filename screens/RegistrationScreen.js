@@ -40,9 +40,9 @@ const Registration = ({ navigation }) => {
           id: id,
         })
       )
-      navigation.navigate('ProfileScreen', {
-        adherentId: id,
-      })
+      // navigation.navigate('ProfileScreen', {
+      //   adherentId: id,
+      // })
     } else {
       Alert.alert('Attention', 'Numéro de téléphone incorrect !')
     }
