@@ -1,15 +1,23 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { Pressable, StyleSheet, Text } from 'react-native'
 
 const AdherentItem = ({ item }) => {
+  const navigation = useNavigation()
+
+  const handleNavigationToProfil = () => {
+    navigation.navigate('ProfileScreen', {
+      profileId: item.id,
+    })
+  }
+
   return (
     <Pressable
       style={({ pressed }) => [styles.item, pressed ? styles.pressedBtn : null]}
-      onPress={() => console.log('Pressed!')}
+      onPress={handleNavigationToProfil}
     >
-      <Text
-        style={styles.itemText}
-      >{`${item.firstname} ${item.lastname}`}</Text>
+      <Text style={styles.itemText}>{item.firstname}</Text>
+      <Text>{item.registrationDate}</Text>
     </Pressable>
   )
 }
@@ -21,12 +29,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: '#e8e8e8',
-    width: 340,
+    backgroundColor: '#F4F1F1',
+    width: 360,
     maxWidth: 380,
-    borderBottomColor: 'gray',
+    borderColor: '#ccc',
+    borderWidth: 1,
     marginBottom: 5,
-    borderRadius: 5,
+    borderRadius: 3,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   pressedBtn: {
     opacity: 0.8,
