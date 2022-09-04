@@ -26,12 +26,8 @@ export async function authenticate(email, password) {
   }
 }
 
-export function validatePhone(phoneNumber) {
-  return String(phoneNumber).match(
-    /^(?:(?:(?:\+|00)212[\s]?(?:[\s]?\(0\)[\s]?)?)|0){1}(?:5[\s.-]?[2-3]|6[\s.-]?[13-9]){1}[0-9]{1}(?:[\s.-]?\d{2}){3}$/
-  )
-}
-
-export function validateFirstName(firstname) {
-  return firstname.length >= 3 && firstname <= 10
+export function getFormattedDate(date) {
+  return `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`
 }
