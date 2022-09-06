@@ -24,6 +24,10 @@ function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
+        headerStyle: {
+          backgroundColor: '#0074D9',
+        },
+        headerTintColor: '#fff',
         contentStyle: {
           backgroundColor: '#fff',
         },
@@ -46,6 +50,10 @@ function AuthenticatedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
+        headerStyle: {
+          backgroundColor: '#0074D9',
+        },
+        headerTintColor: '#fff',
         contentStyle: {
           backgroundColor: '#fff',
         },
@@ -63,7 +71,7 @@ function AuthenticatedStack() {
         component={RegistrationScreen}
         options={{
           headerTitle: 'Inscription',
-          animation: 'slide_from_bottom',
+          animation: 'slide_from_right',
         }}
       />
       <Stack.Screen
