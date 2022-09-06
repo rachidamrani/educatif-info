@@ -17,7 +17,9 @@ const AdherentItem = ({ item }) => {
       style={({ pressed }) => [styles.item, pressed ? styles.pressedBtn : null]}
       onPress={handleNavigationToProfil}
     >
-      <Text style={styles.itemText}>{item.firstname}</Text>
+      <Text style={styles.itemText}>
+        {`${item.firstname} ${item.lastname}`}
+      </Text>
       <Text>{item.registrationDate}</Text>
     </Pressable>
   )
@@ -30,9 +32,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: '#F4F1F1',
+    backgroundColor: '#7FDBFF',
     width: Dimensions.get('window').width * 0.93,
-    borderColor: '#ccc',
+    borderColor: '#0074D9',
     borderWidth: 1,
     marginBottom: 5,
     borderRadius: 3,
