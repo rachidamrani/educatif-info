@@ -5,9 +5,9 @@ const API_KEY = 'AIzaSyCCfIROh4xuGiJ2WExOQwFiP-_VdLLert8'
 const BAKCEND_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`
 
 export const levels = [
-  { title: 'Primaire', color: '#34568B' },
-  { title: 'Collège', color: '#DD4124' },
-  { title: 'Lycée', color: '#55B4B0' },
+  { title: 'Primaire', color: '#FF4136' },
+  { title: 'Collège', color: '#FF851B' },
+  { title: 'Lycée', color: '#3D9970' },
 ]
 
 export async function authenticate(email, password) {
