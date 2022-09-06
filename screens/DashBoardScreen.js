@@ -22,12 +22,7 @@ const DashBoardScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Ionicons
-          name='exit-outline'
-          size={24}
-          color='black'
-          onPress={logout}
-        />
+        <Ionicons name='exit-outline' size={24} color='#fff' onPress={logout} />
       ),
     })
   }, [])
@@ -54,7 +49,7 @@ const DashBoardScreen = ({ navigation }) => {
       <Button
         mode='contained-tonal'
         onPress={() => navigation.navigate('RegistrationScreen')}
-        buttonColor='#3B71F3'
+        buttonColor='#0074D9'
         textColor='#fff'
         icon='plus'
         style={styles.addBtn}
@@ -81,8 +76,9 @@ const DashBoardScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.latestItems}
         data={adherents.slice().reverse().slice(0, 10)}
-        renderItem={({ item }) => <AdherentItem key={item.id} item={item} />}
-      ></FlatList>
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <AdherentItem item={item} />}
+      />
     </View>
   )
 }
