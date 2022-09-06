@@ -1,27 +1,28 @@
 import { useState } from 'react'
 import { Alert, ScrollView, StyleSheet, View } from 'react-native'
-import { Text, TextInput, Button, ActivityIndicator } from 'react-native-paper'
+import { Text, TextInput, Button } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
 
 import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
 import { addNewAdherent } from '../store/adherents/adherentSlice'
-import { validatePhone } from '../utils'
+import { getFormattedDate } from '../utils'
 
 const Registration = ({ navigation }) => {
   const [values, setInputValues] = useState({
-    firstname: 'Rachid',
+    firstname: '',
     lastname: '',
     level: '',
     responsible: '',
     dateOfBirth: '',
-    phone: '0666911974',
+    phone: '',
   })
 
   const dispatch = useDispatch()
 
   function handleSubmit() {
+    const id = getRandomId()
     const newAdherent = {
       firstname: values.firstname,
       lastname: values.lastname,
@@ -29,23 +30,19 @@ const Registration = ({ navigation }) => {
       responsible: values.responsible,
       dateOfBirth: values.dateOfBirth,
       phone: values.phone,
-      registrationDate: Date(),
+      registrationDate: getFormattedDate(new Date()),
+      id: id,
     }
 
-    if (validatePhone(values.phone)) {
-      const id = getRandomId()
-      dispatch(
-        addNewAdherent({
-          ...newAdherent,
-          id: id,
-        })
-      )
-      // navigation.navigate('ProfileScreen', {
-      //   adherentId: id,
-      // })
-    } else {
-      Alert.alert('Attention', 'Numéro de téléphone incorrect !')
-    }
+    dispatch(
+      addNewAdherent({
+        ...newAdherent,
+        id: id,
+      })
+    )
+    navigation.replace('ProfileScreen', {
+      profileId: id,
+    })
   }
 
   function handleChange(name, value) {
@@ -142,7 +139,7 @@ const Registration = ({ navigation }) => {
           icon='account-plus'
           mode='contained-tonal'
           onPress={handleSubmit}
-          buttonColor='#3B71F3'
+          buttonColor='#0074D9'
           textColor='#fff'
           style={styles.submitBtn}
         >
