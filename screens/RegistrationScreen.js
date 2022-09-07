@@ -1,179 +1,184 @@
-import { useState } from 'react'
-import { Alert, ScrollView, StyleSheet, View } from 'react-native'
-import { Text, TextInput, Button } from 'react-native-paper'
-import { useDispatch } from 'react-redux'
-
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Text,
+  Keyboard,
+} from 'react-native'
 import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
+import { COLORS, isValid, validatedate } from '../utils'
+import Input from '../components/Input'
 
-import { addNewAdherent } from '../store/adherents/adherentSlice'
-import { getFormattedDate } from '../utils'
+import Button from '../components/Button'
+import { useState } from 'react'
+import { RadioButton } from 'react-native-paper'
 
 const Registration = ({ navigation }) => {
-  const [values, setInputValues] = useState({
-    firstname: '',
-    lastname: '',
+  const [inputs, setInputs] = useState({
+    fullname: '',
     level: '',
-    responsible: '',
-    dateOfBirth: '',
+    birthday: '',
     phone: '',
+    responsible: '',
   })
 
-  const dispatch = useDispatch()
+  const [errors, setErrors] = useState({})
 
-  function handleSubmit() {
-    const id = getRandomId()
-    const newAdherent = {
-      firstname: values.firstname,
-      lastname: values.lastname,
-      level: values.level,
-      responsible: values.responsible,
-      dateOfBirth: values.dateOfBirth,
-      phone: values.phone,
-      registrationDate: getFormattedDate(new Date()),
-      id: id,
+  function validate() {
+    Keyboard.dismiss()
+    let valid = true
+
+    if (!isValid(inputs.fullname, 'fullname')) {
+      handleError(
+        'Le nom complet doit contenir au moins 5 charactères',
+        'fullname'
+      )
+      valid = false
     }
 
-    dispatch(
-      addNewAdherent({
-        ...newAdherent,
-        id: id,
-      })
-    )
-    navigation.replace('ProfileScreen', {
-      profileId: id,
-    })
+    if (!isValid(inputs.phone, 'phone')) {
+      handleError(
+        'Veuillez saisir un numéro de téléphone sous la forme : 0x-xx-xx-xx-xx',
+        'phone'
+      )
+      valid = false
+    }
+
+    if (valid) {
+      console.log('goo')
+    }
   }
 
-  function handleChange(name, value) {
-    setInputValues((prevInputs) => ({
-      ...prevInputs,
-      [name]: [value],
+  function handleOnChange(text, input) {
+    setInputs((prev) => ({
+      ...prev,
+      [input]: text,
+    }))
+  }
+
+  function handleError(errorMessage, input) {
+    setErrors((prev) => ({
+      ...prev,
+      [input]: errorMessage,
     }))
   }
 
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        paddingTop: 30,
+        paddingHorizontal: 20,
+      }}
     >
-      <View style={styles.titleContainer}>
-        <Text variant='titleLarge' style={styles.title}>
-          Nouveau adhérant
-        </Text>
-      </View>
-      <View style={styles.inputsContainer}>
-        <TextInput
-          label='Nom'
-          onChangeText={(firstname) => handleChange('firstname', firstname)}
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.firstname}
+      <Text
+        style={{
+          color: COLORS.black,
+          fontSize: 28,
+          fontWeight: 'bold',
+          textAlign: 'center',
+        }}
+      >
+        Nouveau Adhérant
+      </Text>
+      <View style={{ marginTop: 20 }}>
+        <Input
+          label='Nom et prénom'
+          error={errors.fullname}
+          onFocus={() => {
+            handleError(null, 'fullname')
+          }}
+          iconName='account'
+          placeholder='Entrer le nom et le prénom'
+          value={inputs.fullname}
+          onChangeText={(text) => handleOnChange(text, 'fullname')}
         />
-        <TextInput
-          label='Prénom'
-          onChangeText={(lastname) => handleChange('lastname', lastname)}
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.lastname}
-        />
-        <TextInput
+        <Input
           label='Niveau'
-          onChangeText={(level) => handleChange('level', level)}
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.level}
+          iconName='school'
+          error={errors.level}
+          onFocus={() => {
+            handleError(null, 'level')
+          }}
+          placeholder='Entrer le niveau'
+          value={inputs.level}
+          onChangeText={(text) => handleOnChange(text, 'level')}
         />
-        <TextInput
-          label='Responsable légal'
-          onChangeText={(responsible) =>
-            handleChange('responsible', responsible)
-          }
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.responsible}
-        />
-        <TextInput
-          label='Date de naissane'
-          onChangeText={(dateOfBirth) =>
-            handleChange('dateOfBirth', dateOfBirth)
-          }
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          value={values.dateOfBirth}
+        <Input
+          label='Date de naissance'
+          iconName='cake-layered'
+          placeholder='Entrer la date de naissance'
+          error={errors.birthday}
+          onFocus={() => {
+            handleError(null, 'birthday')
+          }}
+          value={inputs.birthday}
+          onChangeText={(text) => handleOnChange(text, 'birthday')}
         />
 
-        <TextInput
-          label='Téléphone'
-          onChangeText={(phone) => handleChange('phone', phone)}
-          autoFocus={false}
-          mode='outlined'
-          selectionColor='#e8e8e8'
-          outlineColor='black'
-          activeOutlineColor='dodgerblue'
-          style={styles.input}
-          keyboardType='name-phone-pad'
-          value={values.phone}
-        />
-        <Button
-          icon='account-plus'
-          mode='contained-tonal'
-          onPress={handleSubmit}
-          buttonColor='#0074D9'
-          textColor='#fff'
-          style={styles.submitBtn}
+        <Text
+          style={{
+            marginRight: 5,
+            fontSize: 16,
+            color: COLORS.grey,
+          }}
         >
-          Ajouter
-        </Button>
+          Responsable
+        </Text>
+        <View>
+          <RadioButton.Group onValueChange={() => {}}>
+            <View style={styles.radioBtns}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <RadioButton value='Père' status='checked' />
+                <Text>Père</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <RadioButton value='Père' />
+                <Text>Mère</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <RadioButton value='Père' />
+                <Text>Frère</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <RadioButton value='Père' />
+                <Text>Autre</Text>
+              </View>
+            </View>
+          </RadioButton.Group>
+          <Input
+            label='Téléphone'
+            keyboardType='numeric'
+            iconName='phone'
+            placeholder='Entrer le téléphone du responsable'
+            error={errors.phone}
+            onFocus={() => {
+              handleError(null, 'phone')
+            }}
+            value={inputs.phone}
+            onChangeText={(text) => handleOnChange(text, 'phone')}
+          />
+        </View>
+
+        <Button
+          title='Ajouter'
+          style={{ borderRadius: 5, marginTop: 5 }}
+          iconName='account-plus'
+          onPress={validate}
+        />
       </View>
     </ScrollView>
   )
 }
 
-export default Registration
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    padding: 10,
-    alignItems: 'center',
-  },
-  titleContainer: {
+const styles = {
+  radioBtns: {
+    flexDirection: 'row',
     width: '100%',
-    marginTop: 10,
+    marginVertical: 10,
+    justifyContent: 'space-around',
   },
-  title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  inputsContainer: {
-    paddingTop: 10,
-    width: '89%',
-  },
-  input: {
-    marginBottom: 10,
-  },
-  submitBtn: {
-    marginTop: 6,
-  },
-})
+}
+
+export default Registration
