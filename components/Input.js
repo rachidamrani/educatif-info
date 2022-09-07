@@ -12,7 +12,7 @@ const Input = ({
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false)
-  const [hidePassword, setIsHidePassword] = useState(password)
+  const [hidePassword, setHidePassword] = useState(password)
 
   return (
     <View style={{ marginBottom: 10 }}>
@@ -31,8 +31,7 @@ const Input = ({
       >
         <Icon
           name={iconName}
-          size={24}
-          style={{ fontSize: 22, color: COLORS.darkBlue, marginRight: 10 }}
+          style={{ fontSize: 24, color: COLORS.darkBlue, marginRight: 10 }}
         />
         <TextInput
           secureTextEntry={hidePassword}
@@ -45,6 +44,13 @@ const Input = ({
           onBlur={() => setIsFocused(false)}
           {...props}
         />
+        {password && (
+          <Icon
+            name={hidePassword ? 'eye-off-outline' : 'eye-outline'}
+            style={{ fontSize: 24, color: COLORS.darkBlue, marginLeft: 10 }}
+            onPress={() => setHidePassword(!hidePassword)}
+          />
+        )}
       </View>
       {error && (
         <Text style={{ color: COLORS.red, fontSize: 12 }}>{error}</Text>
