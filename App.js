@@ -71,7 +71,7 @@ function AuthenticatedStack() {
         component={RegistrationScreen}
         options={{
           headerTitle: 'Inscription',
-          animation: 'slide_from_right',
+          animation: 'slide_from_bottom',
         }}
       />
       <Stack.Screen
