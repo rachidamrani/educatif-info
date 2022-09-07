@@ -1,37 +1,42 @@
-import { Pressable, StyleSheet, Text } from 'react-native'
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+} from 'react-native'
 import React from 'react'
+import { COLORS } from '../utils'
 
-const Button = ({ title, onClick }) => {
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+const Button = ({ title, iconName, onPress = () => {}, style }) => {
   return (
-    <Pressable
-      style={({ pressed }) => [
-        styles.btnContainer,
-        pressed && styles.pressedBtn,
-      ]}
-      onPress={onClick}
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={[styles.btn, style]}
+      onPress={onPress}
     >
-      <Text style={styles.btnText}>{title}</Text>
-    </Pressable>
+      <Icon
+        name={iconName}
+        size={24}
+        style={{ marginRight: 8, color: COLORS.white }}
+      />
+      <Text style={{ color: COLORS.white, fontWeight: 'bold', fontSize: 18 }}>
+        {title}
+      </Text>
+    </TouchableOpacity>
   )
 }
 
-export default Button
-
 const styles = StyleSheet.create({
-  btnContainer: {
-    backgroundColor: '#0074D9',
-    padding: 12,
-    borderRadius: 10,
-    width: '90%',
-    marginVertical: 10,
-  },
-  btnText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  pressedBtn: {
-    backgroundColor: '#0d4adb',
+  btn: {
+    height: 50,
+    width: '100%',
+    backgroundColor: COLORS.blue,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 })
+
+export default Button
