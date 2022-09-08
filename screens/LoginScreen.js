@@ -29,29 +29,18 @@ const LoginScreen = ({}) => {
         resizeMode='contain'
         style={[styles.logo, { height: height * 0.4 }]}
       />
+
+      <Input label='Email' iconName='email' placeholder='Entrer votre email' />
       <Input
-        config={{
-          placeholder: 'Email',
-          value: email,
-          autoCapitalize: 'none',
-          onChangeText: (enteredEmail) => {
-            setEmail(enteredEmail)
-          },
-        }}
+        label='Mot de passe'
+        iconName='lock'
+        placeholder='Entrer votre mot de passe'
+        password={true}
       />
-      <Input
-        config={{
-          placeholder: 'Mot de passe',
-          secureTextEntry: true,
-          value: password,
-          onChangeText: (enteredPassword) => {
-            setPassword(enteredPassword)
-          },
-        }}
-      />
+
       <Button
         onClick={handleSubmit}
-        title={`${isLoading ? 'Connexion ...' : 'Se connecter'}`}
+        title={isLoading ? 'Connexion ...' : 'Se Connecter'}
       />
     </View>
   )
@@ -62,8 +51,6 @@ export default LoginScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'center',
     padding: 20,
   },
   logo: {
@@ -71,5 +58,6 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     maxHeight: 300,
     marginBottom: 20,
+    alignSelf: 'center',
   },
 })
