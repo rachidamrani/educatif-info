@@ -14,6 +14,8 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import { useState } from 'react'
 import { RadioButton } from 'react-native-paper'
+import RadioButtonsGroup from '../components/RadioButtonsGroup'
+import LevelsDropdown from '../components/LevelsDropdown'
 
 const Registration = ({ navigation }) => {
   const [inputs, setInputs] = useState({
@@ -24,7 +26,12 @@ const Registration = ({ navigation }) => {
     responsible: '',
   })
 
+  const [respRadioBtnValue, setRadioBtnValue] = useState()
   const [errors, setErrors] = useState({})
+
+  function handleOnChangeRadioBtn(newValue) {
+    setRadioBtnValue(newValue)
+  }
 
   function validate() {
     Keyboard.dismiss()
@@ -43,6 +50,15 @@ const Registration = ({ navigation }) => {
         'Veuillez saisir un numéro de téléphone sous la forme : 0x-xx-xx-xx-xx',
         'phone'
       )
+      valid = false
+    }
+
+    if (!isValid(inputs.birthday, 'birthday')) {
+      handleError(
+        'Veuillez saisir la date de naissance sous la forme : jj-dd-aaaa',
+        'birthday'
+      )
+
       valid = false
     }
 
@@ -94,21 +110,12 @@ const Registration = ({ navigation }) => {
           value={inputs.fullname}
           onChangeText={(text) => handleOnChange(text, 'fullname')}
         />
-        <Input
-          label='Niveau'
-          iconName='school'
-          error={errors.level}
-          onFocus={() => {
-            handleError(null, 'level')
-          }}
-          placeholder='Entrer le niveau'
-          value={inputs.level}
-          onChangeText={(text) => handleOnChange(text, 'level')}
-        />
+
+        <LevelsDropdown />
         <Input
           label='Date de naissance'
           iconName='cake-layered'
-          placeholder='Entrer la date de naissance'
+          placeholder='Entrer la date de naissance : jj-dd-aaaa'
           error={errors.birthday}
           onFocus={() => {
             handleError(null, 'birthday')
@@ -117,36 +124,12 @@ const Registration = ({ navigation }) => {
           onChangeText={(text) => handleOnChange(text, 'birthday')}
         />
 
-        <Text
-          style={{
-            marginRight: 5,
-            fontSize: 16,
-            color: COLORS.grey,
-          }}
-        >
-          Responsable
-        </Text>
+        <RadioButtonsGroup
+          value={respRadioBtnValue}
+          handleOnChangeRadioBtn={handleOnChangeRadioBtn}
+        />
+
         <View>
-          <RadioButton.Group onValueChange={() => {}}>
-            <View style={styles.radioBtns}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <RadioButton value='Père' status='checked' />
-                <Text>Père</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <RadioButton value='Père' />
-                <Text>Mère</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <RadioButton value='Père' />
-                <Text>Frère</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <RadioButton value='Père' />
-                <Text>Autre</Text>
-              </View>
-            </View>
-          </RadioButton.Group>
           <Input
             label='Téléphone'
             keyboardType='numeric'
@@ -170,15 +153,6 @@ const Registration = ({ navigation }) => {
       </View>
     </ScrollView>
   )
-}
-
-const styles = {
-  radioBtns: {
-    flexDirection: 'row',
-    width: '100%',
-    marginVertical: 10,
-    justifyContent: 'space-around',
-  },
 }
 
 export default Registration
