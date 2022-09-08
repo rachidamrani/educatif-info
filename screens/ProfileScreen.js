@@ -14,21 +14,24 @@ const Profile = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: `Profile de ${adherent.firstname} ${adherent.lastname} `,
+      headerTitle: `Profile de ${adherent.fullname}`,
     })
   }, [adherent, navigation])
 
   return (
     <View style={styles.container}>
       <Card style={styles.cardProfile}>
-        <InfoRow
-          label='Nom Complet'
-          info={`${adherent.firstname} ${adherent.lastname}`}
-        />
+        <InfoRow label='Nom Complet' info={`${adherent.fullname}`} />
         <InfoRow label='Niveau' info={adherent.level} />
-        <InfoRow label='Date de naissance' info={adherent.dateOfBirth} />
+        <InfoRow
+          label='Date de naissance'
+          info={adherent.birthday.replace(/-/g, '/')}
+        />
         <InfoRow label='Résponsable légal' info={adherent.responsible} />
-        <InfoRow label="Date d'inscription" info={adherent.registrationDate} />
+        <InfoRow
+          label="Date d'inscription"
+          info={new Date(adherent.registrationDate).toLocaleDateString()}
+        />
         <InfoRow label='Téléphone' info={adherent.phone} />
 
         <View style={styles.controls}>

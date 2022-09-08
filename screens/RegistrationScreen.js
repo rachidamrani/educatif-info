@@ -1,21 +1,19 @@
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Text,
-  Keyboard,
-} from 'react-native'
-import { v4 as getRandomId } from 'uuid'
-import 'react-native-get-random-values'
+import { useState } from 'react'
+import { ScrollView, View, Text, Keyboard } from 'react-native'
+
 import { COLORS, isValid, validatedate } from '../utils'
 import Input from '../components/Input'
 
 import Button from '../components/Button'
-import { useState } from 'react'
-import { RadioButton } from 'react-native-paper'
 import RadioButtonsGroup from '../components/RadioButtonsGroup'
 import LevelsDropdown from '../components/LevelsDropdown'
+
+import { useDispatch } from 'react-redux'
+
+import { v4 as getRandomId } from 'uuid'
+import 'react-native-get-random-values'
+
+import { addNewAdherent } from '../store/adherents/adherentSlice'
 
 const Registration = ({ navigation }) => {
   const [inputs, setInputs] = useState({
@@ -28,6 +26,8 @@ const Registration = ({ navigation }) => {
 
   const [respRadioBtnValue, setRadioBtnValue] = useState()
   const [errors, setErrors] = useState({})
+
+  const dispatch = useDispatch()
 
   function handleOnChangeRadioBtn(newValue) {
     setRadioBtnValue(newValue)
@@ -63,7 +63,19 @@ const Registration = ({ navigation }) => {
     }
 
     if (valid) {
-      console.log('goo')
+      // Dispatch action
+      const newAdherent = {
+        fullname: inputs.fullname,
+        level: inputs.level,
+        birthday: inputs.birthday,
+        phone: inputs.phone,
+        responsible: inputs.responsible,
+        registrationDate: new Date().toUTCString(),
+        id: getRandomId(),
+      }
+
+      dispatch(addNewAdherent(newAdherent))
+      navigation.navigate('DashBoardScreen')
     }
   }
 
@@ -91,9 +103,8 @@ const Registration = ({ navigation }) => {
       <Text
         style={{
           color: COLORS.black,
-          fontSize: 28,
+          fontSize: 25,
           fontWeight: 'bold',
-          textAlign: 'center',
         }}
       >
         Nouveau Adhérant
@@ -112,10 +123,11 @@ const Registration = ({ navigation }) => {
         />
 
         <LevelsDropdown />
+
         <Input
           label='Date de naissance'
           iconName='cake-layered'
-          placeholder='Entrer la date de naissance : jj-dd-aaaa'
+          placeholder='Entrer la date de naissance (jj-dd-aaaa)'
           error={errors.birthday}
           onFocus={() => {
             handleError(null, 'birthday')
@@ -126,7 +138,7 @@ const Registration = ({ navigation }) => {
 
         <RadioButtonsGroup
           value={respRadioBtnValue}
-          handleOnChangeRadioBtn={handleOnChangeRadioBtn}
+          onChangeRadioBtn={handleOnChangeRadioBtn}
         />
 
         <View>

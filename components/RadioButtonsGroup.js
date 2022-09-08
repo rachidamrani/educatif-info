@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { RadioButton } from 'react-native-paper'
 import { COLORS } from '../utils'
 
-const RadioButtonsGroup = ({ handleOnChangeRadioBtn, value }) => {
+const RadioButtonsGroup = ({ onChangeRadioBtn, value }) => {
   return (
     <>
       <Text
@@ -15,7 +15,7 @@ const RadioButtonsGroup = ({ handleOnChangeRadioBtn, value }) => {
       >
         Responsable
       </Text>
-      <RadioButton.Group onValueChange={handleOnChangeRadioBtn} value={value}>
+      <RadioButton.Group onValueChange={onChangeRadioBtn} value={value}>
         <View style={styles.radioBtns}>
           {/* Create a reusabel component  */}
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>

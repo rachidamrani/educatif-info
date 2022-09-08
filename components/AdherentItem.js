@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Pressable, StyleSheet, Text } from 'react-native'
 import { Dimensions } from 'react-native'
+import { COLORS } from '../utils'
 
 const AdherentItem = ({ item }) => {
   const navigation = useNavigation()
@@ -17,10 +18,8 @@ const AdherentItem = ({ item }) => {
       style={({ pressed }) => [styles.item, pressed ? styles.pressedBtn : null]}
       onPress={handleNavigationToProfil}
     >
-      <Text style={styles.itemText}>
-        {`${item.firstname} ${item.lastname}`}
-      </Text>
-      <Text>{item.registrationDate}</Text>
+      <Text style={styles.itemText}>{`${item.fullname}`}</Text>
+      <Text>{new Date(item.registrationDate).toLocaleDateString()}</Text>
     </Pressable>
   )
 }
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: '#7FDBFF',
+    backgroundColor: COLORS.light,
     width: Dimensions.get('window').width * 0.93,
-    borderColor: '#0074D9',
+    borderColor: COLORS.lightblue,
     borderWidth: 1,
     marginBottom: 5,
     borderRadius: 3,

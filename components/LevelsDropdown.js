@@ -9,8 +9,6 @@ const LevelsDropdown = () => {
   const [value, setValue] = useState(null)
   const [items, setItems] = useState(dropDownLevels)
 
-  console.log(value)
-
   return (
     <>
       <Text style={styles.label}>Niveau</Text>
