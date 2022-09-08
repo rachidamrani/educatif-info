@@ -61,14 +61,15 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
-    paddingHorizontal: 18,
-    marginTop: 20,
+    paddingHorizontal: 22,
+    marginTop: 10,
   },
   cardProfile: {
-    padding: 15,
+    padding: 10,
   },
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginVertical: 10,
   },
 })
