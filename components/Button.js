@@ -18,10 +18,10 @@ const Button = ({ title, iconName, onPress = () => {}, style }) => {
     >
       <Icon
         name={iconName}
-        size={24}
+        size={20}
         style={{ marginRight: 8, color: COLORS.white }}
       />
-      <Text style={{ color: COLORS.white, fontWeight: 'bold', fontSize: 18 }}>
+      <Text style={{ color: COLORS.white, fontWeight: 'bold', fontSize: 16 }}>
         {title}
       </Text>
     </TouchableOpacity>
