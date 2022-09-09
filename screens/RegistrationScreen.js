@@ -7,6 +7,7 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import RadioButtonsGroup from '../components/RadioButtonsGroup'
 import LevelsDropdown from '../components/LevelsDropdown'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
 import { useDispatch } from 'react-redux'
 
@@ -28,6 +29,23 @@ const Registration = ({ navigation }) => {
 
   const [level, setLevel] = useState()
   const [levelError, setLevelError] = useState(false)
+
+  const [birthday, setBirthday] = useState()
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true)
+  }
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false)
+  }
+
+  const handleConfirm = (date) => {
+    setBirthday(date)
+    hideDatePicker()
+  }
 
   const [errors, setErrors] = useState({})
 
@@ -143,17 +161,30 @@ const Registration = ({ navigation }) => {
           </Text>
         )}
         {/* Birthday field */}
-        <Input
-          label='Date de naissance'
-          iconName='cake-layered'
-          placeholder='Entrer la date de naissance (jj/dd/aa)'
-          error={errors.birthday}
-          onFocus={() => {
-            handleError(null, 'birthday')
+
+        {/* Date Picker  */}
+
+        <Text
+          style={{
+            marginRight: 5,
+            fontSize: 16,
+            color: COLORS.grey,
+            marginBottom: 10,
           }}
-          value={inputs.birthday}
-          onChangeText={(text) => handleOnChange(text, 'birthday')}
-        />
+        >
+          Date de naissance :{' '}
+        </Text>
+        <View style={{ marginBottom: 10 }}>
+          <Button title='Choisir une date' onPress={showDatePicker} />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode='date'
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+            display='default'
+          />
+        </View>
+
         {/* Responsible field */}
         <RadioButtonsGroup onChangeRadioBtn={setRadioBtnValue} />
 
