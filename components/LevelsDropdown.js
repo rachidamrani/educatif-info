@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { COLORS, dropDownLevels } from '../utils'
 
-const LevelsDropdown = () => {
+const LevelsDropdown = ({ onSetLevel }) => {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(null)
   const [items, setItems] = useState(dropDownLevels)
@@ -13,6 +13,7 @@ const LevelsDropdown = () => {
     <>
       <Text style={styles.label}>Niveau</Text>
       <DropDownPicker
+        categorySelectable={false}
         placeholder='Choisir un niveau'
         listMode='SCROLLVIEW'
         style={{ marginVertical: 10 }}
@@ -20,7 +21,10 @@ const LevelsDropdown = () => {
         value={value}
         items={items}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={(value) => {
+          setValue(value)
+          onSetLevel(value)
+        }}
         setItems={setItems}
       />
     </>
