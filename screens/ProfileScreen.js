@@ -27,7 +27,7 @@ const Profile = ({ navigation }) => {
           label='Date de naissance'
           info={adherent.birthday.replace(/-/g, '/')}
         />
-        <InfoRow label='Résponsable légal' info={adherent.responsible} />
+        <InfoRow label='Responsable légal' info={adherent.responsible} />
         <InfoRow
           label="Date d'inscription"
           info={new Date(adherent.registrationDate).toLocaleDateString()}
