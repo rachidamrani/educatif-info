@@ -93,14 +93,12 @@ const Registration = ({ navigation }) => {
       const newAdherent = {
         fullname: inputs.fullname,
         level: level,
-        birthday: birthdayDate,
+        birthday: birthdayDate.toLocaleDateString(),
         phone: inputs.phone,
         responsible: respRadioBtnValue,
-        registrationDate: new Date().toUTCString(),
+        registrationDate: new Date().toLocaleDateString(),
         id: adherentId,
       }
-
-      console.log(newAdherent)
 
       dispatch(addNewAdherent(newAdherent))
       navigation.replace('ProfileScreen', {
@@ -160,9 +158,6 @@ const Registration = ({ navigation }) => {
           </Text>
         )}
         {/* Birthday field */}
-
-        {/* Date Picker  */}
-
         <Text
           style={{
             marginRight: 5,
