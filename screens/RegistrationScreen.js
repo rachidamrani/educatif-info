@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ScrollView, View, Text, Keyboard } from 'react-native'
+import { ScrollView, View, Text, Keyboard, Alert } from 'react-native'
 
 import { COLORS, isValid, validatedate } from '../utils'
 import Input from '../components/Input'
@@ -23,15 +23,11 @@ const Registration = ({ navigation }) => {
     phone: '',
     responsible: '',
   })
-
   const [respRadioBtnValue, setRadioBtnValue] = useState()
+  const [respError, setRespError] = useState(false)
   const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
-
-  function handleOnChangeRadioBtn(newValue) {
-    setRadioBtnValue(newValue)
-  }
 
   function validate() {
     Keyboard.dismiss()
@@ -62,6 +58,10 @@ const Registration = ({ navigation }) => {
       valid = false
     }
 
+    if (!respRadioBtnValue) {
+      setRespError(true)
+    }
+
     if (valid) {
       // Dispatch action
       const newAdherent = {
@@ -69,7 +69,7 @@ const Registration = ({ navigation }) => {
         level: inputs.level,
         birthday: inputs.birthday,
         phone: inputs.phone,
-        responsible: inputs.responsible,
+        responsible: respRadioBtnValue,
         registrationDate: new Date().toUTCString(),
         id: getRandomId(),
       }
@@ -110,6 +110,7 @@ const Registration = ({ navigation }) => {
         Nouveau Adhérant
       </Text>
       <View style={{ marginTop: 20 }}>
+        {/* Fullname field  */}
         <Input
           label='Nom et prénom'
           error={errors.fullname}
@@ -121,13 +122,13 @@ const Registration = ({ navigation }) => {
           value={inputs.fullname}
           onChangeText={(text) => handleOnChange(text, 'fullname')}
         />
-
+        {/* Level field */}
         <LevelsDropdown />
-
+        {/* Birthday field */}
         <Input
           label='Date de naissance'
           iconName='cake-layered'
-          placeholder='Entrer la date de naissance (jj-dd-aaaa)'
+          placeholder='Entrer la date de naissance (jj/dd/aa)'
           error={errors.birthday}
           onFocus={() => {
             handleError(null, 'birthday')
@@ -135,12 +136,16 @@ const Registration = ({ navigation }) => {
           value={inputs.birthday}
           onChangeText={(text) => handleOnChange(text, 'birthday')}
         />
+        {/* Responsible field */}
+        <RadioButtonsGroup onChangeRadioBtn={setRadioBtnValue} />
 
-        <RadioButtonsGroup
-          value={respRadioBtnValue}
-          onChangeRadioBtn={handleOnChangeRadioBtn}
-        />
+        {respError && !respRadioBtnValue && (
+          <Text style={{ color: COLORS.red, fontSize: 12 }}>
+            Veuillez choisir un responsable avant de continuer
+          </Text>
+        )}
 
+        {/* Phone field  */}
         <View>
           <Input
             label='Téléphone'
@@ -155,7 +160,7 @@ const Registration = ({ navigation }) => {
             onChangeText={(text) => handleOnChange(text, 'phone')}
           />
         </View>
-
+        {/* Submit button */}
         <Button
           title='Ajouter'
           style={{ borderRadius: 5, marginTop: 5 }}
