@@ -25,6 +25,10 @@ const Registration = ({ navigation }) => {
   })
   const [respRadioBtnValue, setRadioBtnValue] = useState()
   const [respError, setRespError] = useState(false)
+
+  const [level, setLevel] = useState()
+  const [levelError, setLevelError] = useState(false)
+
   const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
@@ -51,7 +55,7 @@ const Registration = ({ navigation }) => {
 
     if (!isValid(inputs.birthday, 'birthday')) {
       handleError(
-        'Veuillez saisir la date de naissance sous la forme : jj-dd-aaaa',
+        'Veuillez saisir la date de naissance sous la forme (jj/dd/aa)',
         'birthday'
       )
 
@@ -60,22 +64,31 @@ const Registration = ({ navigation }) => {
 
     if (!respRadioBtnValue) {
       setRespError(true)
+      valid = false
+    }
+
+    if (!level) {
+      setLevelError(true)
+      valid = false
     }
 
     if (valid) {
       // Dispatch action
+      const adherentId = getRandomId()
       const newAdherent = {
         fullname: inputs.fullname,
-        level: inputs.level,
+        level: level,
         birthday: inputs.birthday,
         phone: inputs.phone,
         responsible: respRadioBtnValue,
         registrationDate: new Date().toUTCString(),
-        id: getRandomId(),
+        id: adherentId,
       }
 
       dispatch(addNewAdherent(newAdherent))
-      navigation.navigate('DashBoardScreen')
+      navigation.replace('ProfileScreen', {
+        profileId: adherentId,
+      })
     }
   }
 
@@ -123,7 +136,12 @@ const Registration = ({ navigation }) => {
           onChangeText={(text) => handleOnChange(text, 'fullname')}
         />
         {/* Level field */}
-        <LevelsDropdown />
+        <LevelsDropdown onSetLevel={setLevel} />
+        {levelError && !level && (
+          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+            Veuillez choisir le niveau de l'adhérant
+          </Text>
+        )}
         {/* Birthday field */}
         <Input
           label='Date de naissance'
@@ -140,8 +158,8 @@ const Registration = ({ navigation }) => {
         <RadioButtonsGroup onChangeRadioBtn={setRadioBtnValue} />
 
         {respError && !respRadioBtnValue && (
-          <Text style={{ color: COLORS.red, fontSize: 12 }}>
-            Veuillez choisir un responsable avant de continuer
+          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+            Veuillez choisir un responsable
           </Text>
         )}
 
