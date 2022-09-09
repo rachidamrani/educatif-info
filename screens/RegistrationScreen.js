@@ -30,7 +30,8 @@ const Registration = ({ navigation }) => {
   const [level, setLevel] = useState()
   const [levelError, setLevelError] = useState(false)
 
-  const [birthday, setBirthday] = useState()
+  const [birthdayDate, setBirthdayDate] = useState()
+  const [birthdayDateError, setBirthdayDateError] = useState(false)
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
 
@@ -43,7 +44,7 @@ const Registration = ({ navigation }) => {
   }
 
   const handleConfirm = (date) => {
-    setBirthday(date)
+    setBirthdayDate(date)
     hideDatePicker()
   }
 
@@ -71,15 +72,6 @@ const Registration = ({ navigation }) => {
       valid = false
     }
 
-    if (!isValid(inputs.birthday, 'birthday')) {
-      handleError(
-        'Veuillez saisir la date de naissance sous la forme (jj/dd/aa)',
-        'birthday'
-      )
-
-      valid = false
-    }
-
     if (!respRadioBtnValue) {
       setRespError(true)
       valid = false
@@ -90,18 +82,25 @@ const Registration = ({ navigation }) => {
       valid = false
     }
 
+    if (!birthdayDate) {
+      setBirthdayDateError(true)
+      valid = false
+    }
+
     if (valid) {
       // Dispatch action
       const adherentId = getRandomId()
       const newAdherent = {
         fullname: inputs.fullname,
         level: level,
-        birthday: inputs.birthday,
+        birthday: birthdayDate,
         phone: inputs.phone,
         responsible: respRadioBtnValue,
         registrationDate: new Date().toUTCString(),
         id: adherentId,
       }
+
+      console.log(newAdherent)
 
       dispatch(addNewAdherent(newAdherent))
       navigation.replace('ProfileScreen', {
@@ -175,7 +174,10 @@ const Registration = ({ navigation }) => {
           Date de naissance :{' '}
         </Text>
         <View style={{ marginBottom: 10 }}>
-          <Button title='Choisir une date' onPress={showDatePicker} />
+          <Button
+            title='Choisir une date de naissance'
+            onPress={showDatePicker}
+          />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode='date'
@@ -184,6 +186,12 @@ const Registration = ({ navigation }) => {
             display='default'
           />
         </View>
+
+        {birthdayDateError && !birthdayDate && (
+          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+            La date de naissance de l'adhérant est requise
+          </Text>
+        )}
 
         {/* Responsible field */}
         <RadioButtonsGroup onChangeRadioBtn={setRadioBtnValue} />

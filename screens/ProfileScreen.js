@@ -23,10 +23,7 @@ const Profile = ({ navigation }) => {
       <Card style={styles.cardProfile}>
         <InfoRow label='Nom Complet' info={`${adherent.fullname}`} />
         <InfoRow label='Niveau' info={adherent.level} />
-        <InfoRow
-          label='Date de naissance'
-          info={adherent.birthday.replace(/-/g, '/')}
-        />
+        <InfoRow label='Date de naissance' info={'Date de naissance !'} />
         <InfoRow label='Responsable légal' info={adherent.responsible} />
         <InfoRow
           label="Date d'inscription"
