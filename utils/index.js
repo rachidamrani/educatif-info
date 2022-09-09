@@ -57,17 +57,17 @@ export const COLORS = {
 
 export const dropDownLevels = [
   { label: 'Primaire', value: 'pri' },
-  { label: '6ère année', value: '6ème', parent: 'pri' },
-  { label: '5ère année', value: '5ème', parent: 'pri' },
-  { label: '4ère année', value: '4ème', parent: 'pri' },
-  { label: '3ère année', value: '3ème', parent: 'pri' },
-  { label: '2ère année', value: '2ème', parent: 'pri' },
-  { label: '1ère année', value: '1ère', parent: 'pri' },
+  { label: '6ème année', value: '6P', parent: 'pri' },
+  { label: '5ème année', value: '5P', parent: 'pri' },
+  { label: '4ème année', value: '4P', parent: 'pri' },
+  { label: '3ème année', value: '3P', parent: 'pri' },
+  { label: '2ème année', value: '2P', parent: 'pri' },
+  { label: '1ère année', value: '1P', parent: 'pri' },
 
   { label: 'Collège', value: 'na' },
-  { label: '3AC', value: '3AC', parent: 'na' },
-  { label: '2AC', value: '2AC', parent: 'na' },
-  { label: '1AC', value: '1AC', parent: 'na' },
+  { label: '3AC', value: '3C', parent: 'na' },
+  { label: '2AC', value: '2C', parent: 'na' },
+  { label: '1AC', value: '1C', parent: 'na' },
 
   { label: 'Lycée', value: 'ly' },
   { label: 'TC', value: 'TSC', parent: 'ly' },
