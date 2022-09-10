@@ -105,7 +105,7 @@ const Profile = ({ navigation }) => {
           />
           <View style={{ width: 250, alignSelf: 'center' }}>
             <Button
-              icon='account-remove'
+              icon='home'
               mode='contained'
               textColor='#fff'
               onPress={() => navigation.replace('DashBoardScreen')}
