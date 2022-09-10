@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import { COLORS } from '../utils'
 
 const InfoRow = ({ label, info }) => {
   return (
@@ -13,12 +14,21 @@ export default InfoRow
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     marginBottom: 10,
     paddingVertical: 5,
     borderBottomColor: '#e8e8e8',
     borderBottomWidth: 1,
   },
-  labelText: { fontSize: 18, fontWeight: 'bold' },
-  infoText: { fontSize: 18, color: 'steelblue', fontWeight: '700' },
+  labelText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  infoText: {
+    marginTop: 10,
+    fontSize: 25,
+    color: COLORS.blue,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
 })
