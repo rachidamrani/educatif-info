@@ -44,7 +44,12 @@ const DashBoardScreen = ({ navigation }) => {
         </View>
       </View>
 
-      <Search />
+      <View style={{ alignItems: 'center' }}>
+        <Text variant='headlineMedium' style={styles.levels}>
+          Catégories
+        </Text>
+        <Levels />
+      </View>
 
       <Button
         mode='contained-tonal'
@@ -59,19 +64,11 @@ const DashBoardScreen = ({ navigation }) => {
       <Divider />
 
       <View style={{ alignItems: 'center' }}>
-        <Text variant='headlineMedium' style={styles.levels}>
-          Catégories
-        </Text>
-        <Levels />
-      </View>
-
-      <Divider />
-
-      <View style={{ alignItems: 'center' }}>
         <Text variant='headlineSmall' style={{ marginBottom: 15 }}>
           Adhérants récemment inscrits
         </Text>
       </View>
+      <Search />
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.latestItems}
@@ -107,7 +104,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addBtn: {
-    // marginBottom: 10,
-    marginTop: 5,
+    marginTop: 14,
   },
 })
