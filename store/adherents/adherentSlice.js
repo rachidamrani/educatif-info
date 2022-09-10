@@ -12,6 +12,15 @@ const adherentSlice = createSlice({
       registrationDate: '09/10/22',
       responsible: 'Mère',
     },
+    {
+      birthday: '06/07/90',
+      fullname: 'Halima Alaoui',
+      id: '71d51f46-bcb1-45f3-454a-244857c42aba',
+      level: '4P',
+      phone: '0777063048',
+      registrationDate: '09/10/22',
+      responsible: 'Père',
+    },
   ],
   reducers: {
     addNewAdherent: (state, action) => {
