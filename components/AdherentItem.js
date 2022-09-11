@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: COLORS.light,
-    width: Dimensions.get('window').width * 0.93,
+    width: Dimensions.get('window').width * 0.953,
     borderColor: COLORS.lightblue,
     borderWidth: 1,
     marginBottom: 5,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   pressedBtn: {
-    opacity: 0.8,
+    opacity: 0.7,
   },
   itemText: {
     fontWeight: 'bold',

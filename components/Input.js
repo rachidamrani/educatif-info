@@ -42,6 +42,7 @@ const Input = ({
             setIsFocused(true)
           }}
           onBlur={() => setIsFocused(false)}
+          placeholder={props.placeholder}
           {...props}
         />
         {password && (

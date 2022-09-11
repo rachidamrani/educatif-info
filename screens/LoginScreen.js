@@ -27,10 +27,11 @@ const LoginScreen = ({}) => {
       <Image
         source={logo}
         resizeMode='contain'
-        style={[styles.logo, { height: height * 0.4 }]}
+        style={[styles.logo, { height: height * 0.6 }]}
       />
-
+      {/* Email */}
       <Input label='Email' iconName='email' placeholder='Entrer votre email' />
+      {/* Password */}
       <Input
         label='Mot de passe'
         iconName='lock'
@@ -39,8 +40,9 @@ const LoginScreen = ({}) => {
       />
 
       <Button
-        onClick={handleSubmit}
+        onPress={handleSubmit}
         title={isLoading ? 'Connexion ...' : 'Se Connecter'}
+        style={{ marginTop: 15 }}
       />
     </View>
   )

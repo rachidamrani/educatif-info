@@ -12,7 +12,7 @@ import { Provider as PaperProvider } from 'react-native-paper'
 import RegistrationScreen from './screens/RegistrationScreen'
 import AdherentsList from './screens/AdherentsList'
 
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { store } from './store/adherents'
 import LyceeScreen from './screens/LyceeScreen'
 import CollegeScreen from './screens/CollegeScreen'
@@ -47,6 +47,9 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
+  const state = useSelector((state) => state.adherents)
+
+  console.log(state.length)
   return (
     <Stack.Navigator
       screenOptions={{
@@ -64,6 +67,9 @@ function AuthenticatedStack() {
         component={DashBoardScreen}
         options={{
           headerTitle: 'Tableau de bord',
+          // headerLeft: () => {
+          //   return null
+          // },
         }}
       />
       <Stack.Screen

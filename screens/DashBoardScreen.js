@@ -1,18 +1,18 @@
-import React, { useContext, useLayoutEffect } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import React, { useContext, useLayoutEffect, useState } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { Text, Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
 
-import Divider from '../components/Divider'
 import { useSelector } from 'react-redux'
 import Levels from '../components/Levels'
-import AdherentItem from '../components/AdherentItem'
-import Search from '../components/Search'
+
+import ItemSeparatorView from '../components/ItemSeparatorView'
+
+import { COLORS } from '../utils'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
-
   const { adherents } = useSelector((state) => state)
 
   function logout() {
@@ -29,6 +29,13 @@ const DashBoardScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text
+        variant='displaySmall'
+        style={{ marginBottom: 15, color: COLORS.darkBlue }}
+      >
+        {' '}
+        Bienvenue Mr ElGhazi !
+      </Text>
       <View style={styles.infos}>
         <Chip
           icon='information'
@@ -43,14 +50,7 @@ const DashBoardScreen = ({ navigation }) => {
           <Badge size={27}>{adherents.length}</Badge>
         </View>
       </View>
-
-      <View style={{ alignItems: 'center' }}>
-        <Text variant='headlineMedium' style={styles.levels}>
-          Catégories
-        </Text>
-        <Levels />
-      </View>
-
+      <Levels />
       <Button
         mode='contained-tonal'
         onPress={() => navigation.navigate('RegistrationScreen')}
@@ -61,21 +61,7 @@ const DashBoardScreen = ({ navigation }) => {
       >
         Nouveau Adhérant
       </Button>
-      <Divider />
-
-      <View style={{ alignItems: 'center' }}>
-        <Text variant='headlineSmall' style={{ marginBottom: 15 }}>
-          Adhérants récemment inscrits
-        </Text>
-      </View>
-      <Search />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.latestItems}
-        data={adherents.slice().reverse().slice(0, 10)}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <AdherentItem item={item} />}
-      />
+      <ItemSeparatorView />
     </View>
   )
 }
@@ -104,6 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addBtn: {
-    marginTop: 14,
+    marginTop: 20,
+    marginBottom: 20,
   },
 })
