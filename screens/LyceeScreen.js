@@ -3,8 +3,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 const LyceeScreen = () => {
-  const { adherents } = useSelector((state) => state)
-
   return (
     <View style={styles.container}>
       <Text>LyceeScreen</Text>
