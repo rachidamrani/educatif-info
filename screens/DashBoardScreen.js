@@ -9,11 +9,13 @@ import Levels from '../components/Levels'
 
 import ItemSeparatorView from '../components/ItemSeparatorView'
 
+import { Box, Input } from 'native-base'
+
 import { COLORS } from '../utils'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
-  const { adherents } = useSelector((state) => state)
+  const { adherentsList } = useSelector((state) => state.adherents)
 
   function logout() {
     authCtx.logout()
@@ -47,7 +49,7 @@ const DashBoardScreen = ({ navigation }) => {
           <Text style={{ fontSize: 17 }}>Nombre total des adhérants</Text>
         </Chip>
         <View style={{ alignSelf: 'center' }}>
-          <Badge size={27}>{adherents.length}</Badge>
+          <Badge size={27}>{adherentsList.length}</Badge>
         </View>
       </View>
       <Levels />

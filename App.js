@@ -10,13 +10,15 @@ import AuthContextProvider, { AuthContext } from './store/auth-context'
 import { Provider as PaperProvider } from 'react-native-paper'
 
 import RegistrationScreen from './screens/RegistrationScreen'
-import AdherentsList from './screens/AdherentsList'
+import AdherentsList from './components/AdherentsList'
 
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { store } from './store/adherents'
 import LyceeScreen from './screens/LyceeScreen'
 import CollegeScreen from './screens/CollegeScreen'
 import PrimaireScreen from './screens/PrimaireScreen'
+
+import { NativeBaseProvider } from 'native-base'
 
 const Stack = createNativeStackNavigator()
 
@@ -47,9 +49,6 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
-  const state = useSelector((state) => state.adherents)
-
-  console.log(state.length)
   return (
     <Stack.Navigator
       screenOptions={{
@@ -139,10 +138,12 @@ export default function App() {
   return (
     <Provider store={store}>
       <AuthContextProvider>
-        <PaperProvider>
-          <StatusBar style='light' backgroundColor='black' />
-          <Navigation />
-        </PaperProvider>
+        <NativeBaseProvider>
+          <PaperProvider>
+            <StatusBar style='light' backgroundColor='black' />
+            <Navigation />
+          </PaperProvider>
+        </NativeBaseProvider>
       </AuthContextProvider>
     </Provider>
   )

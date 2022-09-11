@@ -22,8 +22,8 @@ const AuthContextProvider = ({ children }) => {
 
   const value = {
     token: authToken,
-    isAuthenticated: !!authToken,
-    // isAuthenticated: true,
+    // isAuthenticated: !!authToken,
+    isAuthenticated: true,
     login,
     logout,
   }
