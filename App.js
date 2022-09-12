@@ -12,7 +12,7 @@ import { Provider as PaperProvider } from 'react-native-paper'
 import RegistrationScreen from './screens/RegistrationScreen'
 import AdherentsList from './components/AdherentsList'
 
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { store } from './store/adherents'
 import LyceeScreen from './screens/LyceeScreen'
 import CollegeScreen from './screens/CollegeScreen'
@@ -49,6 +49,12 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
+  // const { adherentsList, filteredAdherents } = useSelector(
+  //   (state) => state.adherents
+  // )
+
+  // console.log(adherentsList)
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -92,7 +98,7 @@ function AuthenticatedStack() {
         component={AdherentsList}
         options={{
           headerTitle: 'Liste des adhérants',
-          animation: 'fade_from_bottom',
+          animation: 'slide_from_bottom',
         }}
       />
       <Stack.Screen

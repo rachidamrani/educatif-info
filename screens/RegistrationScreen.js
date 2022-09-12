@@ -148,6 +148,7 @@ const Registration = ({ navigation }) => {
           iconName='account'
           placeholder='Entrer le nom et le prénom'
           value={inputs.fullname}
+          autoCapitalize='words'
           onChangeText={(text) => handleOnChange(text, 'fullname')}
         />
         {/* Level field */}

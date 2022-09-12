@@ -9,8 +9,6 @@ import Levels from '../components/Levels'
 
 import ItemSeparatorView from '../components/ItemSeparatorView'
 
-import { Box, Input } from 'native-base'
-
 import { COLORS } from '../utils'
 
 const DashBoardScreen = ({ navigation }) => {
