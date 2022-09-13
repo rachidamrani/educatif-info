@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { Box, Button, Text, Icon as NativeBaseIcon } from 'native-base'
+import { Box, Button, Text, Icon as NativeBaseIcon, Divider } from 'native-base'
 import { useSelector } from 'react-redux'
 
 import Icon from '../components/Icon'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import ItemSeparatorView from '../components/ItemSeparatorView'
 
 const ProfileScreen = ({ navigation }) => {
   const route = useRoute()
@@ -31,6 +32,18 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <Box alignItems='center' flex={1} padding={4}>
+      <Box
+        justifyContent='center'
+        bgColor='#e8e8e8'
+        w='100%'
+        alignItems='center'
+      >
+        <Text fontFamily={`primaryFontBold`} fontSize={20}>
+          Inforamtions de l'ahérant
+        </Text>
+      </Box>
+
+      <Divider marginTop={2} marginBottom={2} />
       {/* Full name  */}
       <View style={styles.infoStyle}>
         <Icon name='user-alt' />
@@ -104,7 +117,6 @@ const ProfileScreen = ({ navigation }) => {
       {/* Registration Date  */}
       <View style={styles.infoStyle}>
         <Icon name='calendar-month' materialIcon={true} />
-
         <Text
           fontSize={18}
           color='darkBlue.600'
@@ -118,6 +130,20 @@ const ProfileScreen = ({ navigation }) => {
         </Text>
       </View>
 
+      <Divider marginTop={2} marginBottom={2} />
+
+      <Box
+        justifyContent='center'
+        bgColor='#e8e8e8'
+        w='100%'
+        alignItems='center'
+      >
+        <Text fontFamily={`primaryFontBold`} fontSize={20}>
+          Journal des paiments
+        </Text>
+      </Box>
+
+      <Divider marginTop={2} marginBottom={2} />
       <View style={styles.btnControls}>
         <Button
           size='lg'
