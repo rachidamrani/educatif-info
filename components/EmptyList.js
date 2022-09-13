@@ -13,7 +13,9 @@ function EmptyList() {
         }}
         alt='empty-list'
       />
-      <Text fontSize='xl'>La liste des adéhrants est vide !</Text>
+      <Text fontSize='xl' fontFamily={`primaryFontBold`}>
+        La liste des adhérants est vide !
+      </Text>
     </Box>
   )
 }

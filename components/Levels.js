@@ -44,15 +44,15 @@ const styles = StyleSheet.create({
   levelText: {
     color: '#fff',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'primaryFontBold',
   },
   pressed: {
     opacity: 0.8,
     elevation: 0,
   },
   levelPressable: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 50,
     margin: 10,
     backgroundColor: '#e8e8e8',
     borderRadius: 10,

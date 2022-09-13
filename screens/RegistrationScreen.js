@@ -66,7 +66,7 @@ const Registration = ({ navigation }) => {
 
     if (!isValid(inputs.phone, 'phone')) {
       handleError(
-        'Veuillez saisir un numéro de téléphone sous la forme : 0x-xx-xx-xx-xx',
+        'Veuillez saisir un numéro de téléphone : 0x-xx-xx-xx-xx',
         'phone'
       )
       valid = false

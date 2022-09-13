@@ -1,5 +1,5 @@
 import { Input, Box, FlatList, Divider, Text } from 'native-base'
-import { Dimensions, Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import Icon from '@expo/vector-icons/Ionicons'
 import AdherentItem from './AdherentItem'
 
@@ -70,8 +70,7 @@ const AdherentsList = () => {
           />
         ) : isSearching && filteredAdherentsList.length === 0 ? (
           <>
-            <Text fontWeight='bold' fontSize='md'>
-              {' '}
+            <Text fontSize='md' fontFamily={`primaryFont`}>
               Désolé, il n'y a aucun adhérant portant ce nom
             </Text>
             <Image source={notfound} style={styles.notFound} alt='not-found' />

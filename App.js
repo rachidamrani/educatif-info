@@ -20,6 +20,9 @@ import PrimaireScreen from './screens/PrimaireScreen'
 
 import { NativeBaseProvider } from 'native-base'
 
+import { useFonts } from 'expo-font'
+import AppLoading from 'expo-app-loading'
+
 const Stack = createNativeStackNavigator()
 
 function AuthStack() {
@@ -49,12 +52,6 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
-  // const { adherentsList, filteredAdherents } = useSelector(
-  //   (state) => state.adherents
-  // )
-
-  // console.log(adherentsList)
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -141,6 +138,15 @@ function Navigation() {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    primaryFont: require('./assets/fonts/OpenSans-Regular.ttf'),
+    primaryFontBold: require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
+
   return (
     <Provider store={store}>
       <AuthContextProvider>

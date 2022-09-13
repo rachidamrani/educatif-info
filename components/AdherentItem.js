@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
   },
   fullname: {
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'primaryFontBold',
   },
 })

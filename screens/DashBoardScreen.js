@@ -32,7 +32,14 @@ const DashBoardScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ marginBottom: 15, color: COLORS.darkBlue }} fontSize='4xl'>
+      <Text
+        style={{
+          marginBottom: 15,
+          color: COLORS.darkBlue,
+          fontFamily: 'primaryFontBold',
+        }}
+        fontSize='3xl'
+      >
         {' '}
         Bienvenue Mr El-Ghazi !
       </Text>
@@ -44,7 +51,9 @@ const DashBoardScreen = ({ navigation }) => {
             navigation.navigate('AdherentsList')
           }}
         >
-          <Text style={{ fontSize: 17 }}>Nombre total des adhérants</Text>
+          <Text style={{ fontSize: 17, fontFamily: 'primaryFont' }}>
+            Nombre total des adhérants
+          </Text>
         </Chip>
         <View style={{ alignSelf: 'center' }}>
           <Badge size={27}>{adherentsList.length}</Badge>
@@ -59,7 +68,9 @@ const DashBoardScreen = ({ navigation }) => {
         icon='plus'
         style={styles.addBtn}
       >
-        Nouveau Adhérant
+        <Text style={{ fontFamily: 'primaryFontBold', color: 'white' }}>
+          Nouveau Adhérant
+        </Text>
       </Button>
       <ItemSeparatorView />
 

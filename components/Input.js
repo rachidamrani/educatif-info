@@ -35,7 +35,11 @@ const Input = ({
         />
         <TextInput
           secureTextEntry={hidePassword}
-          style={{ color: COLORS.darkBlue, flex: 1 }}
+          style={{
+            color: COLORS.darkBlue,
+            flex: 1,
+            fontFamily: 'primaryFontBold',
+          }}
           autoCorrect={false}
           onFocus={() => {
             onFocus()
@@ -54,7 +58,15 @@ const Input = ({
         )}
       </View>
       {error && (
-        <Text style={{ color: COLORS.red, fontSize: 12 }}>{error}</Text>
+        <Text
+          style={{
+            color: COLORS.red,
+            fontSize: 12,
+            fontFamily: 'primaryFontBold',
+          }}
+        >
+          {error}
+        </Text>
       )}
     </View>
   )
@@ -66,6 +78,7 @@ const styles = StyleSheet.create({
   label: {
     marginRight: 5,
     fontSize: 16,
+    fontFamily: 'primaryFontBold',
     color: COLORS.grey,
   },
   inputContainer: {
