@@ -4,19 +4,19 @@ import { COLORS } from '../utils'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { useNavigation } from '@react-navigation/native'
 
-import { useDispatch } from 'react-redux'
-import { removeAdherent } from '../store/adherents/adherentSlice'
-
 const AdherentItem = ({ adherent, control }) => {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
 
   return (
     <View style={styles.itmeContainer}>
       <Pressable
         style={styles.item}
         android_ripple={{ color: COLORS.grey }}
-        onLongPress={() => navigation.navigate('ProfileScreen')}
+        onLongPress={() =>
+          navigation.navigate('ProfileScreen', {
+            profileId: adherent.id,
+          })
+        }
       >
         <Text style={styles.fullname}>{adherent.fullname}</Text>
         {control && (
@@ -26,17 +26,6 @@ const AdherentItem = ({ adherent, control }) => {
               onPress={() => console.log('edit')}
             >
               <FontAwesome5 name='user-edit' size={22} color='green' />
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => pressed && [styles.pressedBtn]}
-              onPress={() => dispatch(removeAdherent(adherent.id))}
-            >
-              <FontAwesome5
-                name='trash'
-                size={22}
-                color='red'
-                style={{ marginLeft: 8 }}
-              />
             </Pressable>
           </View>
         )}
