@@ -1,4 +1,5 @@
 import { Input, Box, FlatList, Divider, Text } from 'native-base'
+import { Dimensions, Image, StyleSheet } from 'react-native'
 import Icon from '@expo/vector-icons/Ionicons'
 import AdherentItem from './AdherentItem'
 
@@ -9,6 +10,8 @@ import {
   isLookingFor,
 } from '../store/adherents/adherentSlice'
 
+import notfound from '../assets/notfound.png'
+
 const AdherentsList = () => {
   const { adherentsList, filteredAdherentsList, isSearching } = useSelector(
     (state) => state.adherents
@@ -17,7 +20,7 @@ const AdherentsList = () => {
   const dispatch = useDispatch()
 
   function handleRenderItems({ item }) {
-    return <AdherentItem adherent={item} />
+    return <AdherentItem adherent={item} control={true} />
   }
 
   function handleSearch(query) {
@@ -41,7 +44,7 @@ const AdherentsList = () => {
           autoCapitalize='words'
           w='90%'
           marginBottom={3}
-          bgColor='lightBlue.100'
+          bgColor='light.50'
           borderColor='blue.400'
           focusOutlineColor='darkBlue.600'
           borderWidth='1'
@@ -53,7 +56,6 @@ const AdherentsList = () => {
           fontWeight='bold'
           onChangeText={handleSearch}
         />
-
         <Divider marginBottom={3} />
         {!isSearching ? (
           <FlatList
@@ -62,7 +64,13 @@ const AdherentsList = () => {
             renderItem={handleRenderItems}
           />
         ) : isSearching && filteredAdherentsList.length === 0 ? (
-          <Text>Not found</Text>
+          <>
+            <Text fontWeight='bold' fontSize='md'>
+              {' '}
+              Désolé, il n'y a aucun adhérant portant ce nom
+            </Text>
+            <Image source={notfound} style={styles.notFound} />
+          </>
         ) : (
           <FlatList
             data={
@@ -80,3 +88,11 @@ const AdherentsList = () => {
 }
 
 export default AdherentsList
+
+const styles = StyleSheet.create({
+  notFound: {
+    width: 180,
+    height: 180,
+    marginTop: 10,
+  },
+})

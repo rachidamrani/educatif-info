@@ -85,7 +85,12 @@ const adherentSlice = createSlice({
       state.adherentsList.push(action.payload)
     },
     removeAdherent: (state, action) => {
-      return state.filter((item) => item.id !== action.payload)
+      return {
+        ...state,
+        adherentsList: state.adherentsList.filter(
+          (item) => action.payload !== item.id
+        ),
+      }
     },
     filterAdherents: (state, action) => {
       return {
