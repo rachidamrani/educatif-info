@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    elevation: 3,
+    elevation: 2,
     shadowRadius: 8,
     shadowColor: 'black',
     shadowOpacity: 0.25,

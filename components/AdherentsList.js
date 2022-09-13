@@ -11,6 +11,7 @@ import {
 } from '../store/adherents/adherentSlice'
 
 import notfound from '../assets/notfound.png'
+import EmptyList from './EmptyList'
 
 const AdherentsList = () => {
   const { adherentsList, filteredAdherentsList, isSearching } = useSelector(
@@ -35,6 +36,10 @@ const AdherentsList = () => {
       dispatch(isLookingFor(false))
       dispatch(clearFilteredAdherents())
     }
+  }
+
+  if (adherentsList.length === 0) {
+    return <EmptyList />
   }
 
   return (
@@ -69,7 +74,7 @@ const AdherentsList = () => {
               {' '}
               Désolé, il n'y a aucun adhérant portant ce nom
             </Text>
-            <Image source={notfound} style={styles.notFound} />
+            <Image source={notfound} style={styles.notFound} alt='not-found' />
           </>
         ) : (
           <FlatList

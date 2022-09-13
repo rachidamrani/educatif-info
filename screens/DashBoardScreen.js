@@ -1,6 +1,6 @@
 import React, { useContext, useLayoutEffect } from 'react'
 import { Text } from 'native-base'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import { Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../store/auth-context'
@@ -12,6 +12,7 @@ import ItemSeparatorView from '../components/ItemSeparatorView'
 
 import { COLORS } from '../utils'
 import LatestAdherents from '../components/LatestAdherents'
+import EmptyList from '../components/EmptyList'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
@@ -61,10 +62,17 @@ const DashBoardScreen = ({ navigation }) => {
         Nouveau Adhérant
       </Button>
       <ItemSeparatorView />
-      <Text marginTop={2} marginBottom={2}>
-        Adhérant récemment ajoutés
-      </Text>
-      <LatestAdherents edit={false} />
+
+      {adherentsList.length > 0 ? (
+        <>
+          <Text marginTop={4} marginBottom={4} fontSize='2xl'>
+            Adhérant récemment ajoutés
+          </Text>
+          <LatestAdherents edit={false} />
+        </>
+      ) : (
+        <EmptyList />
+      )}
     </View>
   )
 }
