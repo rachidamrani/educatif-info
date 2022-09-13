@@ -68,7 +68,7 @@ const DashBoardScreen = ({ navigation }) => {
           <Text marginTop={4} marginBottom={4} fontSize='2xl'>
             Adhérant récemment ajoutés
           </Text>
-          <LatestAdherents edit={false} />
+          <LatestAdherents edit={false} limit={6} />
         </>
       ) : (
         <EmptyList />
