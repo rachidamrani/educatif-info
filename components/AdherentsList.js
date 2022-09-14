@@ -12,6 +12,8 @@ import {
 
 import notfound from '../assets/notfound.png'
 import EmptyList from './EmptyList'
+import { useEffect, useRef } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 const AdherentsList = () => {
   const { adherentsList, filteredAdherentsList, isSearching } = useSelector(

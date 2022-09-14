@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontSize: 16,
     color: COLORS.grey,
+    fontFamily: 'primaryFontBold',
   },
 })

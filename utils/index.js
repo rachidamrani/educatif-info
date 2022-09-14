@@ -72,3 +72,16 @@ export const dropDownLevels = [
   { label: '1BAC', value: '1BACSE', parent: 'ly' },
   { label: '2BAC', value: '2BACSEC', parent: 'ly' },
 ]
+
+export const months = [
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Décembre',
+  'Janvier',
+  'Février',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+]

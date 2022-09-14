@@ -1,20 +1,24 @@
 import { useState } from 'react'
-import { ScrollView, View, Text, Keyboard, Alert } from 'react-native'
+import { ScrollView, View, Text, Keyboard } from 'react-native'
 
-import { COLORS, isValid, validatedate } from '../utils'
+import { COLORS, isValid } from '../utils'
 import Input from '../components/Input'
 
-import Button from '../components/Button'
 import RadioButtonsGroup from '../components/RadioButtonsGroup'
 import LevelsDropdown from '../components/LevelsDropdown'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
 import { useDispatch } from 'react-redux'
 
+import { Button } from 'native-base'
+
 import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
 import { addNewAdherent } from '../store/adherents/adherentSlice'
+import { Divider } from 'native-base'
+
+import { Ionicons } from '@expo/vector-icons'
 
 const Registration = ({ navigation }) => {
   const [inputs, setInputs] = useState({
@@ -98,6 +102,18 @@ const Registration = ({ navigation }) => {
         responsible: respRadioBtnValue,
         registrationDate: new Date().toLocaleDateString(),
         id: adherentId,
+        paiment: {
+          Septembre: false,
+          Octobre: false,
+          Novembre: false,
+          Décembre: false,
+          Janvier: false,
+          Février: false,
+          Mars: false,
+          Avril: false,
+          Mai: false,
+          Juin: false,
+        },
       }
 
       dispatch(addNewAdherent(newAdherent))
@@ -132,11 +148,12 @@ const Registration = ({ navigation }) => {
         style={{
           color: COLORS.black,
           fontSize: 25,
-          fontWeight: 'bold',
+          fontFamily: 'primaryFontBold',
         }}
       >
         Nouveau Adhérant
       </Text>
+      <Divider marginTop={5} />
       <View style={{ marginTop: 20 }}>
         {/* Fullname field  */}
         <Input
@@ -154,7 +171,14 @@ const Registration = ({ navigation }) => {
         {/* Level field */}
         <LevelsDropdown onSetLevel={setLevel} />
         {levelError && !level && (
-          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+          <Text
+            style={{
+              color: COLORS.red,
+              fontSize: 12,
+              marginBottom: 8,
+              fontFamily: 'primaryFontBold',
+            }}
+          >
             Veuillez choisir le niveau de l'adhérant
           </Text>
         )}
@@ -165,15 +189,25 @@ const Registration = ({ navigation }) => {
             fontSize: 16,
             color: COLORS.grey,
             marginBottom: 10,
+            fontFamily: 'primaryFontBold',
           }}
         >
           Date de naissance :{' '}
         </Text>
         <View style={{ marginBottom: 10 }}>
           <Button
-            title='Choisir une date de naissance'
+            colorScheme='lightBlue'
+            alignSelf='center'
             onPress={showDatePicker}
-          />
+            leftIcon={<Ionicons name='person-add' size={18} color='white' />}
+            size='sm'
+            _text={{
+              fontSize: 16,
+              fontFamily: 'primaryFontBold',
+            }}
+          >
+            Choisir une date de naissance
+          </Button>
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode='date'
@@ -184,7 +218,14 @@ const Registration = ({ navigation }) => {
         </View>
 
         {birthdayDateError && !birthdayDate && (
-          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+          <Text
+            style={{
+              color: COLORS.red,
+              fontSize: 12,
+              marginBottom: 8,
+              fontFamily: 'primaryFontBold',
+            }}
+          >
             La date de naissance de l'adhérant est requise
           </Text>
         )}
@@ -193,7 +234,14 @@ const Registration = ({ navigation }) => {
         <RadioButtonsGroup onChangeRadioBtn={setRadioBtnValue} />
 
         {respError && !respRadioBtnValue && (
-          <Text style={{ color: COLORS.red, fontSize: 12, marginBottom: 8 }}>
+          <Text
+            style={{
+              color: COLORS.red,
+              fontSize: 12,
+              marginBottom: 8,
+              fontFamily: 'primaryFontBold',
+            }}
+          >
             Veuillez choisir un responsable
           </Text>
         )}
@@ -214,12 +262,21 @@ const Registration = ({ navigation }) => {
           />
         </View>
         {/* Submit button */}
+
         <Button
-          title='Ajouter'
-          style={{ borderRadius: 5, marginTop: 5 }}
-          iconName='account-plus'
+          colorScheme='lightBlue'
+          alignSelf='center'
           onPress={validate}
-        />
+          leftIcon={<Ionicons name='person-add' size={18} color='white' />}
+          size='sm'
+          width='1/3'
+          _text={{
+            fontSize: 16,
+            fontFamily: 'primaryFontBold',
+          }}
+        >
+          Ajouter
+        </Button>
       </View>
     </ScrollView>
   )

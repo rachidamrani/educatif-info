@@ -8,6 +8,7 @@ import Icon from '../components/Icon'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ItemSeparatorView from '../components/ItemSeparatorView'
+import PaimentSection from '../components/PaimentSection'
 
 const ProfileScreen = ({ navigation }) => {
   const route = useRoute()
@@ -38,8 +39,8 @@ const ProfileScreen = ({ navigation }) => {
         w='100%'
         alignItems='center'
       >
-        <Text fontFamily={`primaryFontBold`} fontSize={20}>
-          Inforamtions de l'ahérant
+        <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
+          Informations de l'ahérant
         </Text>
       </Box>
 
@@ -138,16 +139,19 @@ const ProfileScreen = ({ navigation }) => {
         w='100%'
         alignItems='center'
       >
-        <Text fontFamily={`primaryFontBold`} fontSize={20}>
+        <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
           Journal des paiments
         </Text>
       </Box>
 
-      <Divider marginTop={2} marginBottom={2} />
+      {/* Paiment Section */}
+      <PaimentSection adherent={adherentFound} />
+
+      <Divider marginBottom={2} />
       <View style={styles.btnControls}>
         <Button
           size='lg'
-          colorScheme='success'
+          colorScheme='darkBlue'
           leftIcon={
             <MaterialCommunityIcons
               name='delete-alert'
@@ -163,7 +167,7 @@ const ProfileScreen = ({ navigation }) => {
         </Button>
         <Button
           size='lg'
-          colorScheme='danger'
+          colorScheme='coolGray'
           leftIcon={
             <MaterialCommunityIcons
               name='account-edit-outline'
