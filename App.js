@@ -10,7 +10,7 @@ import AuthContextProvider, { AuthContext } from './store/auth-context'
 import { Provider as PaperProvider } from 'react-native-paper'
 
 import RegistrationScreen from './screens/RegistrationScreen'
-import AdherentsList from './components/AdherentsList'
+import AdherentsList from './screens/AdherentsList'
 
 import { Provider, useSelector } from 'react-redux'
 import { store } from './store/adherents'
@@ -69,9 +69,7 @@ function AuthenticatedStack() {
         component={DashBoardScreen}
         options={{
           headerTitle: 'Tableau de bord',
-          // headerLeft: () => {
-          //   return null
-          // },
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen
@@ -94,7 +92,7 @@ function AuthenticatedStack() {
         name='AdherentsList'
         component={AdherentsList}
         options={{
-          headerTitle: 'Liste des adhérants',
+          headerTitle: 'Liste des adhérents',
           animation: 'slide_from_bottom',
         }}
       />
@@ -128,6 +126,10 @@ function AuthenticatedStack() {
 
 function Navigation() {
   const authCtx = useContext(AuthContext)
+
+  const { adherentsList } = useSelector((state) => state.adherents)
+
+  console.log(adherentsList)
 
   return (
     <NavigationContainer>

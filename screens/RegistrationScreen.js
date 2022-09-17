@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ScrollView, View, Text, Keyboard } from 'react-native'
+import { ScrollView, View, Keyboard } from 'react-native'
+import { Text } from 'native-base'
 
 import { COLORS, isValid } from '../utils'
 import Input from '../components/Input'
@@ -144,16 +145,9 @@ const Registration = ({ navigation }) => {
         paddingHorizontal: 20,
       }}
     >
-      <Text
-        style={{
-          color: COLORS.black,
-          fontSize: 25,
-          fontFamily: 'primaryFontBold',
-        }}
-      >
-        Nouveau Adhérant
+      <Text fontSize={25} fontFamily='primaryFontBold' textAlign='center'>
+        Ajouter un nouveau adhérent{' '}
       </Text>
-      <Divider marginTop={5} />
       <View style={{ marginTop: 20 }}>
         {/* Fullname field  */}
         <Input
@@ -179,7 +173,7 @@ const Registration = ({ navigation }) => {
               fontFamily: 'primaryFontBold',
             }}
           >
-            Veuillez choisir le niveau de l'adhérant
+            Veuillez choisir le niveau de l'adhérent
           </Text>
         )}
         {/* Birthday field */}
@@ -193,6 +187,9 @@ const Registration = ({ navigation }) => {
           }}
         >
           Date de naissance :{' '}
+          <Text color='blue.300'>
+            {birthdayDate ? new Date(birthdayDate).toLocaleDateString() : null}
+          </Text>
         </Text>
         <View style={{ marginBottom: 10 }}>
           <Button
@@ -226,7 +223,7 @@ const Registration = ({ navigation }) => {
               fontFamily: 'primaryFontBold',
             }}
           >
-            La date de naissance de l'adhérant est requise
+            La date de naissance de l'adhérent est requise
           </Text>
         )}
 
@@ -264,14 +261,14 @@ const Registration = ({ navigation }) => {
         {/* Submit button */}
 
         <Button
-          colorScheme='lightBlue'
+          colorScheme='green'
           alignSelf='center'
           onPress={validate}
-          leftIcon={<Ionicons name='person-add' size={18} color='white' />}
+          leftIcon={<Ionicons name='person-add' size={16} color='white' />}
           size='sm'
-          width='1/3'
+          width='1/4'
           _text={{
-            fontSize: 16,
+            fontSize: 15,
             fontFamily: 'primaryFontBold',
           }}
         >

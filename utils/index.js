@@ -31,7 +31,7 @@ export function getFormattedDate(date) {
 }
 
 const patterns = {
-  fullname: /^([a-z]{5,10})(\s)([a-z]{5,10})?(\s)?([a-z]{5,10})?$/i,
+  fullname: /^([a-z]{3,12})(\s)([a-z]{3,12})?(\s)?([a-z]{3,12})?$/i,
   level: /[a-z]/i,
   birthday:
     /(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})/,
@@ -63,14 +63,14 @@ export const dropDownLevels = [
   { label: '1ère année', value: '1P', parent: 'pri' },
 
   { label: 'Collège', value: 'na' },
-  { label: '3AC', value: '3C', parent: 'na' },
-  { label: '2AC', value: '2C', parent: 'na' },
-  { label: '1AC', value: '1C', parent: 'na' },
+  { label: '3AC', value: '3AC', parent: 'na' },
+  { label: '2AC', value: '2AC', parent: 'na' },
+  { label: '1AC', value: '1AC', parent: 'na' },
 
   { label: 'Lycée', value: 'ly' },
   { label: 'TC', value: 'TSC', parent: 'ly' },
-  { label: '1BAC', value: '1BACSE', parent: 'ly' },
-  { label: '2BAC', value: '2BACSEC', parent: 'ly' },
+  { label: '1BAC', value: '1BAC', parent: 'ly' },
+  { label: '2BAC', value: '2BAC', parent: 'ly' },
 ]
 
 export const months = [

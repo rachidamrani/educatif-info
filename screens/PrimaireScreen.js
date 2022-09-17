@@ -1,20 +1,35 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { useSelector } from 'react-redux'
+import { FlatList, Box } from 'native-base'
+import AdherentItem from '../components/AdherentItem'
+import EmptyList from '../components/EmptyList'
 
 const PrimaireScreen = () => {
+  const { adherentsList } = useSelector((state) => state.adherents)
+
+  const primaireEtudiant = adherentsList.filter(
+    (adherent) =>
+      adherent.level === '1P' ||
+      adherent.level === '2P' ||
+      adherent.level === '3P' ||
+      adherent.level === '4P' ||
+      adherent.level === '5P' ||
+      adherent.level === '6P'
+  )
+
+  if (primaireEtudiant.length === 0) {
+    return <EmptyList message='Cette liste est vide !' />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>PrimaireScreen</Text>
-    </View>
+    <Box flex={1} justifyContent='center' alignItems='center' marginY={5}>
+      <FlatList
+        data={primaireEtudiant}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <AdherentItem adherent={item} />}
+        showsVerticalScrollIndicator={false}
+      />
+    </Box>
   )
 }
 
 export default PrimaireScreen
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})

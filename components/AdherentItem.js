@@ -3,6 +3,7 @@ import { COLORS } from '../utils'
 
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { useNavigation } from '@react-navigation/native'
+import { Button } from 'native-base'
 
 const AdherentItem = ({ adherent, control }) => {
   const navigation = useNavigation()
@@ -18,15 +19,29 @@ const AdherentItem = ({ adherent, control }) => {
           })
         }
       >
-        <Text style={styles.fullname}>{adherent.fullname}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <FontAwesome5 name='user-graduate' size={14} color='black' />
+          <Text style={styles.fullname}>{adherent.fullname}</Text>
+        </View>
         {control && (
           <View style={styles.controls}>
-            <Pressable
+            {/* <Pressable
               style={({ pressed }) => pressed && styles.pressedBtn}
               onPress={() => console.log('edit')}
             >
               <FontAwesome5 name='user-edit' size={22} color='green' />
-            </Pressable>
+            </Pressable> */}
+            <Button
+              variant='solid'
+              size='xs'
+              colorScheme='primary'
+              _text={{
+                fontSize: 11,
+              }}
+              onPress={() => console.log('edit')}
+            >
+              Modifier
+            </Button>
           </View>
         )}
         {!control && (
@@ -69,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   fullname: {
+    marginLeft: 5,
     fontSize: 16,
     fontFamily: 'primaryFontBold',
   },

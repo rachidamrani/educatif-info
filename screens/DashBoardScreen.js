@@ -1,5 +1,5 @@
 import React, { useContext, useLayoutEffect } from 'react'
-import { Text } from 'native-base'
+import { Divider, Text } from 'native-base'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { Button, Chip, Badge } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
@@ -7,8 +7,7 @@ import { AuthContext } from '../store/auth-context'
 
 import { useSelector } from 'react-redux'
 import Levels from '../components/Levels'
-
-import ItemSeparatorView from '../components/ItemSeparatorView'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { COLORS } from '../utils'
 import LatestAdherents from '../components/LatestAdherents'
@@ -52,7 +51,7 @@ const DashBoardScreen = ({ navigation }) => {
           }}
         >
           <Text style={{ fontSize: 17, fontFamily: 'primaryFont' }}>
-            Nombre total des adhérants
+            Nombre total des adhérents
           </Text>
         </Chip>
         <View style={{ alignSelf: 'center' }}>
@@ -69,20 +68,33 @@ const DashBoardScreen = ({ navigation }) => {
         style={styles.addBtn}
       >
         <Text style={{ fontFamily: 'primaryFontBold', color: 'white' }}>
-          Nouveau Adhérant
+          Nouveau adhérent
         </Text>
       </Button>
-      <ItemSeparatorView />
+      <Divider />
 
       {adherentsList.length > 0 ? (
         <>
-          <Text marginTop={4} marginBottom={4} fontSize='2xl'>
-            Adhérant récemment ajoutés
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <MaterialCommunityIcons
+              name='update'
+              size={24}
+              color='black'
+              style={{ marginRight: 8 }}
+            />
+            <Text
+              marginTop={4}
+              marginBottom={4}
+              fontSize='xl'
+              fontFamily={`primaryFontBold`}
+            >
+              Adhérents récemment ajoutés
+            </Text>
+          </View>
           <LatestAdherents edit={false} limit={6} />
         </>
       ) : (
-        <EmptyList />
+        <EmptyList message='La list des adhérent est vide ! ' />
       )}
     </View>
   )

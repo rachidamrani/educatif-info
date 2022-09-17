@@ -12,6 +12,7 @@ const RadioButtonsGroup = ({ onChangeRadioBtn }) => {
           marginRight: 5,
           fontSize: 16,
           color: COLORS.grey,
+          fontFamily: 'primaryFontBold',
         }}
       >
         Responsable

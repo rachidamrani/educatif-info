@@ -24,7 +24,7 @@ const PaimentSection = ({ adherent }) => {
       flexWrap='wrap'
       justifyContent='center'
       alignItems='center'
-      marginY={5}
+      marginY={3}
     >
       {months.map((month) => (
         <Pressable

@@ -2,7 +2,7 @@ import { Box, Image, Text } from 'native-base'
 
 import empty from '../assets/empty.png'
 
-function EmptyList() {
+function EmptyList({ message }) {
   return (
     <Box alignItems='center' justifyContent='center' flex={1}>
       <Image
@@ -14,7 +14,7 @@ function EmptyList() {
         alt='empty-list'
       />
       <Text fontSize='xl' fontFamily={`primaryFontBold`}>
-        La liste des adhérants est vide !
+        {message}
       </Text>
     </Box>
   )
