@@ -40,7 +40,6 @@ const ProfileScreen = ({ navigation }) => {
       headerTitle: !adherentFound
         ? 'Ce profile est peut être supprimé'
         : `Profile de ${adherentFound.fullname.split(' ')[0]}`,
-      headerBackVisible: false,
     })
   }, [navigation])
 
@@ -55,7 +54,7 @@ const ProfileScreen = ({ navigation }) => {
   if (!adherentFound) {
     return (
       <Box justifyContent='center' alignItems='center' flex={1}>
-        <Text fontSize='xl' marginY={5}>
+        <Text fontSize='xl' marginY={5} fontFamily='primaryFontBold'>
           Cet adhérent n'existe plus !
         </Text>
         <Image

@@ -14,7 +14,6 @@ import {
 import notfound from '../assets/notfound.png'
 import EmptyList from '../components/EmptyList'
 import { useEffect, useRef } from 'react'
-import { useNavigation } from '@react-navigation/native'
 
 const AdherentsList = ({ navigation }) => {
   const textInput = useRef()

@@ -17,7 +17,6 @@ import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
 import { addNewAdherent } from '../store/adherents/adherentSlice'
-import { Divider } from 'native-base'
 
 import { Ionicons } from '@expo/vector-icons'
 

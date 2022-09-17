@@ -32,13 +32,13 @@ const AdherentItem = ({ adherent, control }) => {
               <FontAwesome5 name='user-edit' size={22} color='green' />
             </Pressable> */}
             <Button
-              variant='solid'
+              variant='subtle'
               size='xs'
-              colorScheme='primary'
+              colorScheme='coolGray'
               _text={{
                 fontSize: 11,
               }}
-              onPress={() => console.log('edit')}
+              onPress={() => navigation.navigate('RegistrationScreen')}
             >
               Modifier
             </Button>
