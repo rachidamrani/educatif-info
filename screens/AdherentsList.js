@@ -8,6 +8,7 @@ import {
   filterAdherents,
   clearFilteredAdherents,
   isLookingFor,
+  setIsSearchingToFalse,
 } from '../store/adherents/adherentSlice'
 
 import notfound from '../assets/notfound.png'
@@ -15,7 +16,9 @@ import EmptyList from '../components/EmptyList'
 import { useEffect, useRef } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-const AdherentsList = () => {
+const AdherentsList = ({ navigation }) => {
+  const textInput = useRef()
+
   const { adherentsList, filteredAdherentsList, isSearching } = useSelector(
     (state) => state.adherents
   )
@@ -25,6 +28,10 @@ const AdherentsList = () => {
   function handleRenderItems({ item }) {
     return <AdherentItem adherent={item} control={true} />
   }
+
+  useEffect(() => {
+    dispatch(setIsSearchingToFalse())
+  }, [navigation])
 
   function handleSearch(query) {
     if (query.trim() !== '') {
@@ -47,6 +54,7 @@ const AdherentsList = () => {
   return (
     <Box alignItems='center' paddingTop='5'>
       <Input
+        ref={textInput}
         autoCapitalize='words'
         w='90%'
         marginBottom={3}
@@ -65,7 +73,7 @@ const AdherentsList = () => {
       <Divider marginBottom={3} />
       {!isSearching ? (
         <FlatList
-          data={adherentsList.slice().reverse()}
+          data={adherentsList.slice()}
           keyExtractor={(item) => item.id}
           renderItem={handleRenderItems}
         />

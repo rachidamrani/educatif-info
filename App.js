@@ -127,9 +127,9 @@ function AuthenticatedStack() {
 function Navigation() {
   const authCtx = useContext(AuthContext)
 
-  const { adherentsList } = useSelector((state) => state.adherents)
+  // const { adherentsList } = useSelector((state) => state.adherents)
 
-  console.log(adherentsList)
+  // console.log(adherentsList)
 
   return (
     <NavigationContainer>

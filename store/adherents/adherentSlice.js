@@ -131,6 +131,12 @@ const adherentSlice = createSlice({
 
       return state
     },
+    setIsSearchingToFalse: (state) => {
+      return {
+        ...state,
+        isSearching: false,
+      }
+    },
   },
 })
 
@@ -140,6 +146,7 @@ export const {
   filterAdherents,
   clearFilteredAdherents,
   isLookingFor,
+  setIsSearchingToFalse,
   adherentHasPayed,
 } = adherentSlice.actions
 const { reducer } = adherentSlice
