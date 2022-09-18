@@ -3,8 +3,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import { RadioButton } from 'react-native-paper'
 import { COLORS } from '../utils'
 
-const RadioButtonsGroup = ({ onChangeRadioBtn }) => {
-  const [checked, setChecked] = useState()
+const RadioButtonsGroup = ({ onChangeRadioBtn, respo }) => {
+  const [checked, setChecked] = useState(() => (respo ? respo : null))
+
   return (
     <>
       <Text

@@ -12,6 +12,8 @@ import { Provider as PaperProvider } from 'react-native-paper'
 import RegistrationScreen from './screens/RegistrationScreen'
 import AdherentsList from './screens/AdherentsList'
 
+import UpdateProfileScreen from './screens/UpdateProfileScreen'
+
 import { Provider, useSelector } from 'react-redux'
 import { store } from './store/adherents'
 import LyceeScreen from './screens/LyceeScreen'
@@ -85,7 +87,7 @@ function AuthenticatedStack() {
         component={Profile}
         options={{
           headerTitle: 'Profile',
-          animation: 'flip',
+          animation: 'fade_from_bottom',
         }}
       />
       <Stack.Screen
@@ -118,6 +120,13 @@ function AuthenticatedStack() {
         options={{
           headerTitle: 'Liste des écoliers',
           animation: 'fade',
+        }}
+      />
+      <Stack.Screen
+        name='UpdateProfileScreen'
+        component={UpdateProfileScreen}
+        options={{
+          animation: 'fade_from_bottom',
         }}
       />
     </Stack.Navigator>

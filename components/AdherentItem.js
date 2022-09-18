@@ -38,7 +38,11 @@ const AdherentItem = ({ adherent, control }) => {
               _text={{
                 fontSize: 11,
               }}
-              onPress={() => navigation.navigate('RegistrationScreen')}
+              onPress={() =>
+                navigation.navigate('UpdateProfileScreen', {
+                  adherentId: adherent.id,
+                })
+              }
             >
               Modifier
             </Button>

@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { COLORS, dropDownLevels } from '../utils'
 
-const LevelsDropdown = ({ onSetLevel }) => {
+const LevelsDropdown = ({ onSetLevel, level }) => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState(level ? level : null)
   const [items, setItems] = useState(dropDownLevels)
 
   return (
