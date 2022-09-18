@@ -16,7 +16,10 @@ import { Button } from 'native-base'
 import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
-import { addNewAdherent } from '../store/adherents/adherentSlice'
+import {
+  addNewAdherent,
+  updateAdherent,
+} from '../store/adherents/adherentSlice'
 
 import { Ionicons } from '@expo/vector-icons'
 import { useRoute } from '@react-navigation/native'
@@ -102,33 +105,21 @@ const Registration = ({ navigation }) => {
     }
 
     if (valid) {
-      // Dispatch action
-      const adherentId = getRandomId()
-      const newAdherent = {
+      const updatedAdherent = {
         fullname: inputs.fullname,
         level: level,
         birthday: birthdayDate.toLocaleDateString(),
         phone: inputs.phone,
         responsible: respRadioBtnValue,
-        registrationDate: new Date().toLocaleDateString(),
-        id: adherentId,
-        paiment: {
-          Septembre: false,
-          Octobre: false,
-          Novembre: false,
-          Décembre: false,
-          Janvier: false,
-          Février: false,
-          Mars: false,
-          Avril: false,
-          Mai: false,
-          Juin: false,
-        },
+        registrationDate: foundAdherent.registrationDate,
+        id: foundAdherent.id,
+        paiment: { ...foundAdherent.paiment },
       }
 
-      dispatch(addNewAdherent(newAdherent))
+      dispatch(updateAdherent({ updatedAdherent, id: foundAdherent.id }))
+
       navigation.replace('ProfileScreen', {
-        profileId: adherentId,
+        adherentId: updateAdherent.id,
       })
     }
   }

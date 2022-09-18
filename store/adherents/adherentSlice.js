@@ -1,94 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getStoredData, saveData } from '../../utils'
 
 const adherentSlice = createSlice({
   name: 'adherent',
   initialState: {
-    adherentsList: [
-      {
-        birthday: '09/01/22',
-        fullname: 'Rachid Amrani',
-        id: '1df78afa-2437-4a91-9db8-1088ea4f3304',
-        level: '2P',
-        paiment: {
-          Avril: false,
-          Décembre: false,
-          Février: false,
-          Janvier: false,
-          Juin: false,
-          Mai: false,
-          Mars: false,
-          Novembre: false,
-          Octobre: false,
-          Septembre: false,
-        },
-        phone: '0666965683',
-        registrationDate: '09/17/22',
-        responsible: 'Père',
-      },
-      {
-        birthday: '09/01/22',
-        fullname: 'Hafsa Amrani',
-        id: 'e2aca1d7-da19-4592-8901-c5c0b3ad2caf',
-        level: '1AC',
-        paiment: {
-          Avril: false,
-          Décembre: false,
-          Février: false,
-          Janvier: false,
-          Juin: false,
-          Mai: false,
-          Mars: false,
-          Novembre: false,
-          Octobre: false,
-          Septembre: false,
-        },
-        phone: '0655223366',
-        registrationDate: '09/17/22',
-        responsible: 'Mère',
-      },
-      {
-        birthday: '09/01/22',
-        fullname: 'Halima Alaoui',
-        id: 'a821058e-1fe7-4a71-aac6-1c754fd6dee6',
-        level: '1BAC',
-        paiment: {
-          Avril: false,
-          Décembre: false,
-          Février: true,
-          Janvier: false,
-          Juin: false,
-          Mai: true,
-          Mars: true,
-          Novembre: false,
-          Octobre: false,
-          Septembre: false,
-        },
-        phone: '0652352641',
-        registrationDate: '09/17/22',
-        responsible: 'Père',
-      },
-      {
-        birthday: '09/01/22',
-        fullname: 'Barqouq Abdessamad',
-        id: '6d900260-9e7f-458c-9fb0-69efb72ee59d',
-        level: 'TSC',
-        paiment: {
-          Avril: false,
-          Décembre: true,
-          Février: false,
-          Janvier: false,
-          Juin: false,
-          Mai: false,
-          Mars: false,
-          Novembre: false,
-          Octobre: false,
-          Septembre: true,
-        },
-        phone: '0633669988',
-        registrationDate: '09/17/22',
-        responsible: 'Père',
-      },
-    ],
+    adherentsList: [],
     filteredAdherentsList: [],
     isSearching: false,
   },
@@ -137,6 +53,17 @@ const adherentSlice = createSlice({
         isSearching: false,
       }
     },
+    updateAdherent: (state, action) => {
+      const { id } = action.payload
+      const updatableAdherentIndex = state.adherentsList.findIndex(
+        (adherent) => adherent.id === id
+      )
+
+      state.adherentsList[updatableAdherentIndex] =
+        action.payload.updatedAdherent
+
+      return state
+    },
   },
 })
 
@@ -148,6 +75,7 @@ export const {
   isLookingFor,
   setIsSearchingToFalse,
   adherentHasPayed,
+  updateAdherent,
 } = adherentSlice.actions
 const { reducer } = adherentSlice
 

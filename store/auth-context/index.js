@@ -12,8 +12,16 @@ const AuthContextProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState()
 
   async function login(email, password) {
-    const token = await authenticate(email, password)
-    setAuthToken(token)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if ((email !== 'educatif.info@edu.com', password !== '2022@2022@')) {
+          reject('Connexion échouée ! Veuillez vérifier votre identifiant.')
+        } else {
+          setAuthToken('connected')
+          resolve('Connecté avec succée !')
+        }
+      }, 3000)
+    })
   }
 
   function logout() {
@@ -22,8 +30,8 @@ const AuthContextProvider = ({ children }) => {
 
   const value = {
     token: authToken,
-    // isAuthenticated: !!authToken,
-    isAuthenticated: true,
+    isAuthenticated: !!authToken,
+    // isAuthenticated: true,
     login,
     logout,
   }
