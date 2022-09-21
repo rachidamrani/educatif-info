@@ -93,7 +93,7 @@ const DashBoardScreen = ({ navigation }) => {
                 Adhérents récemment ajoutés
               </Text>
             </View>
-            <LatestAdherents edit={false} limit={6} />
+            <LatestAdherents edit={false} limit={7} />
           </>
         ) : (
           <EmptyList message='La liste des adhérents est vide ! ' />

@@ -11,7 +11,10 @@ const TotalIncome = () => {
       <Text
         fontSize={17}
         color='teal.800'
-        style={{ marginLeft: 'auto', fontFamily: 'primaryFontBold' }}
+        style={{
+          marginLeft: 'auto',
+          fontFamily: 'primaryFontBold',
+        }}
       >
         1250 DH{' '}
       </Text>
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    height: 40,
+    height: 35,
     paddingHorizontal: 10,
     borderTopColor: 'lightblue',
     borderTopWidth: 1,

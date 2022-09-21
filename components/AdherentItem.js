@@ -32,7 +32,8 @@ const AdherentItem = ({ adherent, control }) => {
               <FontAwesome5 name='user-edit' size={22} color='green' />
             </Pressable> */}
             <Button
-              variant='subtle'
+              variant='link'
+              marginRight={-2}
               size='xs'
               colorScheme='coolGray'
               _text={{
@@ -50,7 +51,14 @@ const AdherentItem = ({ adherent, control }) => {
         )}
         {!control && (
           <View>
-            <Text style={{ fontSize: 16 }}>{adherent.registrationDate}</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: 'primaryFontBold',
+              }}
+            >
+              {adherent.registrationDate}
+            </Text>
           </View>
         )}
       </Pressable>
@@ -67,11 +75,12 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: COLORS.light,
-    height: 45,
+    height: 32,
     width: Dimensions.get('window').width * 0.9,
     marginBottom: 10,
-    paddingHorizontal: 10,
     flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
     elevation: 2,

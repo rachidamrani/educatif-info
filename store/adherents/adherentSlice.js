@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getStoredData, saveData } from '../../utils'
+import { dummyAdherents } from '../../utils'
 
 const adherentSlice = createSlice({
   name: 'adherent',
   initialState: {
-    adherentsList: [],
+    adherentsList: dummyAdherents,
     filteredAdherentsList: [],
     isSearching: false,
   },
