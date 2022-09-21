@@ -247,6 +247,11 @@ const ProfileScreen = ({ navigation }) => {
           }
           marginLeft={5}
           width='50%'
+          onPress={() =>
+            navigation.navigate('UpdateProfileScreen', {
+              adherentId: id,
+            })
+          }
         >
           <Text fontFamily={`primaryFontBold`} color='#fff'>
             Modifier

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "educatif-info",
+    "name": "Centre Educatif Info",
     "slug": "educatif-info",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/learner.jpg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",

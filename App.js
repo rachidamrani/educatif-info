@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import LoginScreen from './screens/LoginScreen'
 import { NavigationContainer } from '@react-navigation/native'
@@ -54,6 +54,10 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
+  const state = useSelector((state) => state.adherents.adherentsList)
+
+  console.log(state)
+
   return (
     <Stack.Navigator
       screenOptions={{
