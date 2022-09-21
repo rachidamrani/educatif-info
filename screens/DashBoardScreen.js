@@ -12,6 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { COLORS } from '../utils'
 import LatestAdherents from '../components/LatestAdherents'
 import EmptyList from '../components/EmptyList'
+import TotalIncome from '../components/TotalIncome'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
@@ -30,73 +31,76 @@ const DashBoardScreen = ({ navigation }) => {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          marginBottom: 15,
-          color: COLORS.darkBlue,
-          fontFamily: 'primaryFontBold',
-        }}
-        fontSize='3xl'
-      >
-        {' '}
-        Bienvenue Mr El-Ghazi !
-      </Text>
-      <View style={styles.infos}>
-        <Chip
-          icon='information'
-          style={{ flexBasis: '92%' }}
-          onPress={() => {
-            navigation.navigate('AdherentsList')
+    <>
+      <View style={styles.container}>
+        <Text
+          style={{
+            marginBottom: 15,
+            color: COLORS.darkBlue,
+            fontFamily: 'primaryFontBold',
           }}
+          fontSize='3xl'
         >
-          <Text style={{ fontSize: 17, fontFamily: 'primaryFont' }}>
-            Nombre total des adhérents
-          </Text>
-        </Chip>
-        <View style={{ alignSelf: 'center' }}>
-          <Badge size={27}>{adherentsList.length}</Badge>
-        </View>
-      </View>
-      <Levels />
-      <Button
-        mode='contained-tonal'
-        onPress={() => navigation.navigate('RegistrationScreen')}
-        buttonColor='#0074D9'
-        textColor='#fff'
-        icon='plus'
-        style={styles.addBtn}
-      >
-        <Text style={{ fontFamily: 'primaryFontBold', color: 'white' }}>
-          Nouveau adhérent
+          {' '}
+          Bienvenue Mr El-Ghazi !
         </Text>
-      </Button>
-      <Divider />
-
-      {adherentsList.length > 0 ? (
-        <>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <MaterialCommunityIcons
-              name='update'
-              size={24}
-              color='black'
-              style={{ marginRight: 8 }}
-            />
-            <Text
-              marginTop={4}
-              marginBottom={4}
-              fontSize='xl'
-              fontFamily={`primaryFontBold`}
-            >
-              Adhérents récemment ajoutés
+        <View style={styles.infos}>
+          <Chip
+            icon='information'
+            style={{ flexBasis: '92%' }}
+            onPress={() => {
+              navigation.navigate('AdherentsList')
+            }}
+          >
+            <Text style={{ fontSize: 17, fontFamily: 'primaryFont' }}>
+              Nombre total des adhérents
             </Text>
+          </Chip>
+          <View style={{ alignSelf: 'center' }}>
+            <Badge size={27}>{adherentsList.length}</Badge>
           </View>
-          <LatestAdherents edit={false} limit={6} />
-        </>
-      ) : (
-        <EmptyList message='La list des adhérents est vide ! ' />
-      )}
-    </View>
+        </View>
+        <Levels />
+        <Button
+          mode='contained-tonal'
+          onPress={() => navigation.navigate('RegistrationScreen')}
+          buttonColor='#0074D9'
+          textColor='#fff'
+          icon='plus'
+          style={styles.addBtn}
+        >
+          <Text style={{ fontFamily: 'primaryFontBold', color: 'white' }}>
+            Nouveau adhérent
+          </Text>
+        </Button>
+        <Divider />
+
+        {adherentsList.length > 0 ? (
+          <>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <MaterialCommunityIcons
+                name='update'
+                size={24}
+                color='black'
+                style={{ marginRight: 8 }}
+              />
+              <Text
+                marginTop={4}
+                marginBottom={4}
+                fontSize='xl'
+                fontFamily={`primaryFontBold`}
+              >
+                Adhérents récemment ajoutés
+              </Text>
+            </View>
+            <LatestAdherents edit={false} limit={6} />
+          </>
+        ) : (
+          <EmptyList message='La liste des adhérents est vide ! ' />
+        )}
+      </View>
+      <TotalIncome />
+    </>
   )
 }
 
