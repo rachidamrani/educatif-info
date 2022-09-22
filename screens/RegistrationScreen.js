@@ -62,7 +62,7 @@ const Registration = ({ navigation }) => {
 
     if (!isValid(inputs.fullname, 'fullname')) {
       handleError(
-        'Le nom complet doit contenir au moins 5 charactères',
+        'Le nom et le prénom doivent contenir au moins 3 charactères',
         'fullname'
       )
       valid = false
