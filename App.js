@@ -54,10 +54,6 @@ function AuthStack() {
 
 // Render this component when user is connected
 function AuthenticatedStack() {
-  const state = useSelector((state) => state.adherents.adherentsList)
-
-  console.log(state)
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -167,7 +163,7 @@ export default function App() {
       <AuthContextProvider>
         <NativeBaseProvider>
           <PaperProvider>
-            <StatusBar style='light' backgroundColor='black' />
+            <StatusBar style='light' backgroundColor='#0074D9' />
             <Navigation />
           </PaperProvider>
         </NativeBaseProvider>

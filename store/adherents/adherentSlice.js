@@ -7,6 +7,7 @@ const adherentSlice = createSlice({
     adherentsList: dummyAdherents,
     filteredAdherentsList: [],
     isSearching: false,
+    totalRevenue: 0,
   },
   reducers: {
     addNewAdherent: (state, action) => {
@@ -38,15 +39,6 @@ const adherentSlice = createSlice({
         isSearching: action.payload,
       }
     },
-    adherentHasPayed: (state, action) => {
-      state.adherentsList.find(
-        (ad) => ad.id === action.payload.adherentId
-      ).paiment[action.payload.month] = !state.adherentsList.find(
-        (ad) => ad.id === action.payload.adherentId
-      ).paiment[action.payload.month]
-
-      return state
-    },
     setIsSearchingToFalse: (state) => {
       return {
         ...state,
@@ -64,6 +56,17 @@ const adherentSlice = createSlice({
 
       return state
     },
+    pay: (state, action) => {
+      const { amount, id, month } = action.payload
+      const adherentIndex = state.adherentsList.findIndex((ad) => ad.id === id)
+
+      if (!state.adherentsList[adherentIndex].paiment[month]) {
+        state.adherentsList[adherentIndex].paiment[month] = true
+        state.totalRevenue += amount
+      }
+
+      return state
+    },
   },
 })
 
@@ -74,8 +77,8 @@ export const {
   clearFilteredAdherents,
   isLookingFor,
   setIsSearchingToFalse,
-  adherentHasPayed,
   updateAdherent,
+  pay,
 } = adherentSlice.actions
 const { reducer } = adherentSlice
 
