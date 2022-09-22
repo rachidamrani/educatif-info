@@ -1,12 +1,15 @@
 import { StyleSheet } from 'react-native'
 import { Text, Box } from 'native-base'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const TotalIncome = () => {
+  const { totalRevenue } = useSelector((state) => state.adherents)
+
   return (
     <Box style={styles.container} backgroundColor='lightBlue.100'>
       <Text fontSize={17} color='teal.800' fontFamily='primaryFontBold'>
-        Total Revenue :{' '}
+        Revenu Total :{' '}
       </Text>
       <Text
         fontSize={17}
@@ -16,7 +19,7 @@ const TotalIncome = () => {
           fontFamily: 'primaryFontBold',
         }}
       >
-        1250 DH{' '}
+        {parseFloat(totalRevenue).toFixed(2)} DH
       </Text>
     </Box>
   )

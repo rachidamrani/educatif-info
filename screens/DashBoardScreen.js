@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { COLORS } from '../utils'
 import LatestAdherents from '../components/LatestAdherents'
 import EmptyList from '../components/EmptyList'
-import TotalIncome from '../components/TotalIncome'
+import TotalRevenue from '../components/TotalRevenue'
 
 const DashBoardScreen = ({ navigation }) => {
   const authCtx = useContext(AuthContext)
@@ -99,7 +99,7 @@ const DashBoardScreen = ({ navigation }) => {
           <EmptyList message='La liste des adhérents est vide ! ' />
         )}
       </View>
-      <TotalIncome />
+      <TotalRevenue />
     </>
   )
 }
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 10,
     paddingHorizontal: 10,
   },
   infos: {

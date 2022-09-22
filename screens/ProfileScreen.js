@@ -13,6 +13,7 @@ import PaimentSection from '../components/PaimentSection'
 import { removeAdherent } from '../store/adherents/adherentSlice'
 
 import deleted from '../assets/deleted.jpg'
+import TotalRevenue from '../components/TotalRevenue'
 
 const ProfileScreen = ({ navigation }) => {
   const route = useRoute()
@@ -80,185 +81,192 @@ const ProfileScreen = ({ navigation }) => {
   }
 
   return (
-    <Box alignItems='center' flex={1} padding={4}>
-      <Box
-        justifyContent='center'
-        bgColor='indigo.200'
-        w='100%'
-        alignItems='center'
-        borderRadius={5}
-        style={styles.headLabel}
-      >
-        <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
-          Informations de l'adhérent
-        </Text>
-      </Box>
-
-      <Divider marginTop={2} marginBottom={2} />
-      {/* Full name  */}
-      <View style={styles.infoStyle}>
-        <Icon name='account' materialIcon={true} />
-        <Text fontSize={17} color='darkBlue.600' fontFamily={`primaryFontBold`}>
-          Nom et prénom :{' '}
-        </Text>
-        <Text fontSize={17} fontFamily={`primaryFontBold`}>
-          {adherentFound.fullname}
-        </Text>
-      </View>
-      {/* Level  */}
-      <View style={styles.infoStyle}>
-        <Icon name='school' materialIcon={true} />
-        <Text
-          fontSize={17}
-          color='darkBlue.600'
-          alignSelf='center'
-          fontFamily={`primaryFontBold`}
+    <>
+      <Box alignItems='center' flex={1} padding={4}>
+        <Box
+          justifyContent='center'
+          bgColor='indigo.200'
+          w='100%'
+          alignItems='center'
+          borderRadius={5}
+          style={styles.headLabel}
         >
-          Niveau :{' '}
-        </Text>
-        <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-          {adherentFound.level}
-        </Text>
-      </View>
-      {/* Birthday */}
-      <View style={styles.infoStyle}>
-        <Icon name='baby' materialIcon={true} />
-        <Text
-          fontSize={17}
-          color='darkBlue.600'
-          alignSelf='center'
-          fontFamily={`primaryFontBold`}
-        >
-          Date de naissance :{' '}
-        </Text>
-        <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-          {adherentFound.birthday}
-        </Text>
-      </View>
-      {/* Responsible  */}
-      <View style={styles.infoStyle}>
-        <Icon name='human-male-child' materialIcon={true} />
-        <Text
-          fontSize={17}
-          color='darkBlue.600'
-          alignSelf='center'
-          fontFamily={`primaryFontBold`}
-        >
-          Responsable :{' '}
-        </Text>
-        <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-          {adherentFound.responsible}
-        </Text>
-      </View>
-      {/* Phone  */}
-      <View style={styles.infoStyle}>
-        <Icon name='phone' materialIcon={true} />
-        <Text
-          fontSize={17}
-          color='darkBlue.600'
-          alignSelf='center'
-          fontFamily={`primaryFontBold`}
-        >
-          Télépone :{' '}
-        </Text>
-        <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-          {adherentFound.phone}
-        </Text>
-      </View>
-      {/* Registration Date  */}
-      <View style={styles.infoStyle}>
-        <Icon name='calendar-month' materialIcon={true} />
-        <Text
-          fontSize={17}
-          color='darkBlue.600'
-          alignSelf='center'
-          fontFamily={`primaryFontBold`}
-        >
-          Date d'inscription :{' '}
-        </Text>
-        <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-          {adherentFound.registrationDate}
-        </Text>
-      </View>
-
-      <Divider marginTop={2} marginBottom={2} />
-
-      <Box
-        justifyContent='center'
-        bgColor='indigo.200'
-        w='100%'
-        alignItems='center'
-        borderRadius={5}
-        style={styles.headLabel}
-        marginTop={2}
-      >
-        <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
-          Status des paiments
-        </Text>
-      </Box>
-
-      {/* Paiment Section */}
-      <PaimentSection adherent={adherentFound} />
-
-      <Divider marginBottom={2} />
-      <View style={styles.btnControls}>
-        <Button
-          size='lg'
-          colorScheme='darkBlue'
-          leftIcon={
-            <MaterialCommunityIcons
-              name='delete-alert'
-              size={24}
-              color='white'
-            />
-          }
-          width='50%'
-          onPress={() => {
-            Alert.alert(
-              'Attention !',
-              'Vous êtes sur le point de supprimer cet adhérent! Voulez-vous continuer ?',
-              [
-                {
-                  text: 'Non',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-                {
-                  text: 'Oui',
-                  onPress: () => handleRemoveAdherent(),
-                },
-              ]
-            )
-          }}
-        >
-          <Text fontFamily={`primaryFontBold`} color='#fff'>
-            Supprimer
+          <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
+            Informations de l'adhérent
           </Text>
-        </Button>
-        <Button
-          size='lg'
-          colorScheme='coolGray'
-          leftIcon={
-            <MaterialCommunityIcons
-              name='account-edit-outline'
-              size={24}
-              color='white'
-            />
-          }
-          marginLeft={5}
-          width='50%'
-          onPress={() =>
-            navigation.navigate('UpdateProfileScreen', {
-              adherentId: id,
-            })
-          }
-        >
-          <Text fontFamily={`primaryFontBold`} color='#fff'>
-            Modifier
+        </Box>
+
+        <Divider marginTop={3} marginBottom={3} />
+        {/* Full name  */}
+        <View style={styles.infoStyle}>
+          <Icon name='account' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            fontFamily={`primaryFontBold`}
+          >
+            Nom et prénom :{' '}
           </Text>
-        </Button>
-      </View>
-    </Box>
+          <Text fontSize={17} fontFamily={`primaryFontBold`}>
+            {adherentFound.fullname}
+          </Text>
+        </View>
+        {/* Level  */}
+        <View style={styles.infoStyle}>
+          <Icon name='school' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            alignSelf='center'
+            fontFamily={`primaryFontBold`}
+          >
+            Niveau :{' '}
+          </Text>
+          <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
+            {adherentFound.level}
+          </Text>
+        </View>
+        {/* Birthday */}
+        <View style={styles.infoStyle}>
+          <Icon name='baby' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            alignSelf='center'
+            fontFamily={`primaryFontBold`}
+          >
+            Date de naissance :{' '}
+          </Text>
+          <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
+            {adherentFound.birthday}
+          </Text>
+        </View>
+        {/* Responsible  */}
+        <View style={styles.infoStyle}>
+          <Icon name='human-male-child' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            alignSelf='center'
+            fontFamily={`primaryFontBold`}
+          >
+            Responsable :{' '}
+          </Text>
+          <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
+            {adherentFound.responsible}
+          </Text>
+        </View>
+        {/* Phone  */}
+        <View style={styles.infoStyle}>
+          <Icon name='phone' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            alignSelf='center'
+            fontFamily={`primaryFontBold`}
+          >
+            Télépone :{' '}
+          </Text>
+          <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
+            {adherentFound.phone}
+          </Text>
+        </View>
+        {/* Registration Date  */}
+        <View style={styles.infoStyle}>
+          <Icon name='calendar-month' materialIcon={true} />
+          <Text
+            fontSize={17}
+            color='darkBlue.600'
+            alignSelf='center'
+            fontFamily={`primaryFontBold`}
+          >
+            Date d'inscription :{' '}
+          </Text>
+          <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
+            {adherentFound.registrationDate}
+          </Text>
+        </View>
+
+        <Divider marginTop={2} marginBottom={2} />
+
+        <Box
+          justifyContent='center'
+          bgColor='indigo.200'
+          w='100%'
+          alignItems='center'
+          borderRadius={5}
+          style={styles.headLabel}
+          marginTop={2}
+        >
+          <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
+            Status des paiments
+          </Text>
+        </Box>
+
+        {/* Paiment Section */}
+        <PaimentSection adherent={adherentFound} />
+
+        <Divider marginBottom={2} />
+        <View style={styles.btnControls}>
+          <Button
+            size='lg'
+            colorScheme='darkBlue'
+            leftIcon={
+              <MaterialCommunityIcons
+                name='delete-alert'
+                size={24}
+                color='white'
+              />
+            }
+            width='50%'
+            onPress={() => {
+              Alert.alert(
+                'Attention !',
+                'Vous êtes sur le point de supprimer cet adhérent! Voulez-vous continuer ?',
+                [
+                  {
+                    text: 'Non',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'Oui',
+                    onPress: () => handleRemoveAdherent(),
+                  },
+                ]
+              )
+            }}
+          >
+            <Text fontFamily={`primaryFontBold`} color='#fff'>
+              Supprimer
+            </Text>
+          </Button>
+          <Button
+            size='lg'
+            colorScheme='coolGray'
+            leftIcon={
+              <MaterialCommunityIcons
+                name='account-edit-outline'
+                size={24}
+                color='white'
+              />
+            }
+            marginLeft={5}
+            width='50%'
+            onPress={() =>
+              navigation.navigate('UpdateProfileScreen', {
+                adherentId: id,
+              })
+            }
+          >
+            <Text fontFamily={`primaryFontBold`} color='#fff'>
+              Modifier
+            </Text>
+          </Button>
+        </View>
+      </Box>
+      <TotalRevenue adherentId={id} />
+    </>
   )
 }
 
@@ -282,10 +290,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   btnControls: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: 250,
+    width: 240,
   },
   headLabel: {
     elevation: 3,
