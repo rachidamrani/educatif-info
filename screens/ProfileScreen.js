@@ -14,6 +14,7 @@ import { removeAdherent } from '../store/adherents/adherentSlice'
 
 import deleted from '../assets/deleted.jpg'
 import TotalRevenue from '../components/TotalRevenue'
+import { getFormattedDate } from '../utils'
 
 const ProfileScreen = ({ navigation }) => {
   const route = useRoute()
@@ -85,13 +86,18 @@ const ProfileScreen = ({ navigation }) => {
       <Box alignItems='center' flex={1} padding={4}>
         <Box
           justifyContent='center'
-          bgColor='indigo.200'
+          bgColor='lightBlue.500'
           w='100%'
           alignItems='center'
           borderRadius={5}
           style={styles.headLabel}
         >
-          <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
+          <Text
+            fontFamily={`primaryFontBold`}
+            fontSize={20}
+            padding={2}
+            color='white'
+          >
             Informations de l'adhérent
           </Text>
         </Box>
@@ -138,7 +144,7 @@ const ProfileScreen = ({ navigation }) => {
             Date de naissance :{' '}
           </Text>
           <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-            {adherentFound.birthday}
+            {getFormattedDate(adherentFound.birthday)}
           </Text>
         </View>
         {/* Responsible  */}
@@ -183,7 +189,7 @@ const ProfileScreen = ({ navigation }) => {
             Date d'inscription :{' '}
           </Text>
           <Text fontSize={17} alignSelf='center' fontFamily={`primaryFontBold`}>
-            {adherentFound.registrationDate}
+            {getFormattedDate(adherentFound.registrationDate)}
           </Text>
         </View>
 
@@ -191,14 +197,19 @@ const ProfileScreen = ({ navigation }) => {
 
         <Box
           justifyContent='center'
-          bgColor='indigo.200'
+          bgColor='lightBlue.500'
           w='100%'
           alignItems='center'
           borderRadius={5}
           style={styles.headLabel}
           marginTop={2}
         >
-          <Text fontFamily={`primaryFontBold`} fontSize={20} padding={2}>
+          <Text
+            fontFamily={`primaryFontBold`}
+            fontSize={20}
+            padding={2}
+            color='white'
+          >
             Status des paiments
           </Text>
         </Box>

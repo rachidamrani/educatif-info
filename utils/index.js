@@ -4,10 +4,6 @@ export const levels = [
   { title: 'Lycée', color: '#3D9970' },
 ]
 
-export function getFormattedDate(date) {
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-}
-
 const patterns = {
   fullname: /^([a-z]{3,12})(\s)([a-z]{3,12})?(\s)?([a-z]{3,12})?$/i,
   level: /[a-z]/i,
@@ -170,88 +166,13 @@ export const dummyAdherents = [
     registrationDate: '09/21/22',
     responsible: 'Autre',
   },
-  {
-    birthday: '09/08/11',
-    fullname: 'Ibrahim Alla',
-    id: 'aef0998a-c2ad-419b-bd22-621024dcb75b',
-    level: '2AC',
-    paiment: {
-      Avril: false,
-      Décembre: false,
-      Février: false,
-      Janvier: false,
-      Juin: false,
-      Mai: false,
-      Mars: false,
-      Novembre: false,
-      Octobre: false,
-      Septembre: true,
-    },
-    phone: '0655663355',
-    registrationDate: '09/21/22',
-    responsible: 'Père',
-  },
-  {
-    birthday: '06/16/16',
-    fullname: 'Soukayna Jamal',
-    id: '177c6295-c418-4c8e-932c-44fbd576402f',
-    level: '3AC',
-    paiment: {
-      Avril: false,
-      Décembre: false,
-      Février: false,
-      Janvier: false,
-      Juin: false,
-      Mai: false,
-      Mars: false,
-      Novembre: false,
-      Octobre: false,
-      Septembre: false,
-    },
-    phone: '0655336688',
-    registrationDate: '09/21/22',
-    responsible: 'Mère',
-  },
-  {
-    birthday: '09/21/13',
-    fullname: 'Othmane Abdou',
-    id: '09368066-ba9c-42c8-bcbe-8cb859a98956',
-    level: '4P',
-    paiment: {
-      Avril: false,
-      Décembre: false,
-      Février: false,
-      Janvier: false,
-      Juin: false,
-      Mai: false,
-      Mars: false,
-      Novembre: false,
-      Octobre: false,
-      Septembre: false,
-    },
-    phone: '0685237614',
-    registrationDate: '09/21/22',
-    responsible: 'Père',
-  },
-  {
-    birthday: '09/21/04',
-    fullname: 'Anas Mrabti',
-    id: '45dce803-1fa6-4a24-a726-c45f182b93d4',
-    level: '2BAC',
-    paiment: {
-      Avril: false,
-      Décembre: false,
-      Février: false,
-      Janvier: false,
-      Juin: false,
-      Mai: false,
-      Mars: false,
-      Novembre: false,
-      Octobre: false,
-      Septembre: false,
-    },
-    phone: '0655663322',
-    registrationDate: '09/21/22',
-    responsible: 'Père',
-  },
 ]
+
+export const getFormattedDate = (date) => {
+  const dateArray = date.split('/')
+  const mm = dateArray[0]
+  const dd = dateArray[1]
+  const yy = dateArray[2]
+
+  return dd + '/' + mm + '/' + yy
+}

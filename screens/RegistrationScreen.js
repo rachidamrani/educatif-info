@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ScrollView, View, Keyboard } from 'react-native'
 import { Text } from 'native-base'
 
-import { COLORS, isValid } from '../utils'
+import { COLORS, getFormattedDate, isValid } from '../utils'
 import Input from '../components/Input'
 
 import RadioButtonsGroup from '../components/RadioButtonsGroup'
@@ -187,7 +187,9 @@ const Registration = ({ navigation }) => {
         >
           Date de naissance :{' '}
           <Text color='blue.300'>
-            {birthdayDate ? new Date(birthdayDate).toLocaleDateString() : null}
+            {birthdayDate
+              ? getFormattedDate(new Date(birthdayDate).toLocaleDateString())
+              : null}
           </Text>
         </Text>
         <View style={{ marginBottom: 10 }}>

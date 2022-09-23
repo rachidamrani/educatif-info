@@ -9,6 +9,7 @@ import {
   FormControl,
   Button,
 } from 'native-base'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 import { pay } from '../store/adherents/adherentSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,7 +19,7 @@ const PaimentSection = ({ adherent }) => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = useState(false)
-  const [amount, setAmount] = useState('0')
+  const [amount, setAmount] = useState(null)
   const [month, setMonth] = useState('')
 
   // console.log(adherent.paiment['Avril'])
@@ -28,13 +29,14 @@ const PaimentSection = ({ adherent }) => {
   }
 
   function submitPayment() {
-    if (parseFloat(amount) === 0) {
+    if (!amount) {
       return Alert.alert('Attention', 'Veuillez saisir un montant valide !')
     }
 
     if (!isNaN(amount)) {
       dispatch(pay({ id: adherent.id, month, amount: +amount }))
       setShowModal(false)
+      setAmount(null)
     } else if (!amount) {
       Alert.alert('Attention', 'Vous devriez saisir un montant !')
     } else {
@@ -45,7 +47,7 @@ const PaimentSection = ({ adherent }) => {
     }
   }
 
-  // console.log(amount)
+  console.log(amount)
 
   return (
     <>
@@ -87,18 +89,26 @@ const PaimentSection = ({ adherent }) => {
           onClose={() => setShowModal(false)}
           animationPreset='fade'
         >
-          <Modal.Content maxWidth={200}>
+          <Modal.Content maxWidth={227}>
             <Modal.Body>
               <FormControl>
                 <FormControl.Label mb={3}>
                   <Text fontSize={18} fontFamily='primaryFontBold'>
-                    Montant :
+                    Montant en dirhams :
                   </Text>
                 </FormControl.Label>
                 <Input
                   onChangeText={(amount) => setAmount(amount)}
                   keyboardType='numeric'
                   fontSize={20}
+                  InputRightElement={
+                    <FontAwesome5
+                      name='money-bill-wave'
+                      size={18}
+                      color='black'
+                      style={{ marginRight: 10 }}
+                    />
+                  }
                 />
               </FormControl>
             </Modal.Body>
