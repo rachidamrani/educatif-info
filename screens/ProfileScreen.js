@@ -237,7 +237,6 @@ const ProfileScreen = ({ navigation }) => {
                 [
                   {
                     text: 'Non',
-                    onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                   },
                   {

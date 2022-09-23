@@ -22,8 +22,6 @@ const PaimentSection = ({ adherent }) => {
   const [amount, setAmount] = useState(null)
   const [month, setMonth] = useState('')
 
-  // console.log(adherent.paiment['Avril'])
-
   function handlePayment() {
     setShowModal(true)
   }
@@ -46,8 +44,6 @@ const PaimentSection = ({ adherent }) => {
       )
     }
   }
-
-  console.log(amount)
 
   return (
     <>

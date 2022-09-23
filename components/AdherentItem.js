@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Dimensions, View, Pressable } from 'react-native'
-import { COLORS } from '../utils'
+import { COLORS, getFormattedDate } from '../utils'
 
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { useNavigation } from '@react-navigation/native'
@@ -57,7 +57,7 @@ const AdherentItem = ({ adherent, control }) => {
                 fontFamily: 'primaryFontBold',
               }}
             >
-              {adherent.registrationDate}
+              {getFormattedDate(adherent.registrationDate)}
             </Text>
           </View>
         )}
@@ -71,7 +71,7 @@ export default AdherentItem
 const styles = StyleSheet.create({
   itmeContainer: {
     overflow: 'hidden',
-    borderRadius: 8,
+    borderRadius: 3,
   },
   item: {
     backgroundColor: COLORS.light,
@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
+    borderWidth: 1,
+    borderColor: COLORS.lightblue,
   },
   pressedBtn: {
     opacity: 0.6,
