@@ -18,7 +18,7 @@ const AuthContextProvider = ({ children }) => {
           reject('Connexion échouée ! Veuillez vérifier votre identifiant.')
         } else {
           setAuthToken('connected')
-          resolve('Connecté avec succée !')
+          resolve('Connecté avec succés !')
         }
       }, 1000)
     })

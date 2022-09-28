@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react'
 import { ScrollView, View, Keyboard } from 'react-native'
 import { Text } from 'native-base'
 
-import { COLORS, isValid } from '../utils'
+import { COLORS, getFormattedDate, isValid } from '../utils'
 import Input from '../components/Input'
 
 import RadioButtonsGroup from '../components/RadioButtonsGroup'
@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from 'native-base'
 
-import { v4 as getRandomId } from 'uuid'
 import 'react-native-get-random-values'
 
 import {
@@ -119,7 +118,7 @@ const Registration = ({ navigation }) => {
       dispatch(updateAdherent({ updatedAdherent, id: foundAdherent.id }))
 
       navigation.replace('ProfileScreen', {
-        adherentId: updateAdherent.id,
+        profileId: foundAdherent.id,
       })
     }
   }
@@ -192,7 +191,9 @@ const Registration = ({ navigation }) => {
           }}
         >
           Date de naissance :{' '}
-          <Text color='blue.300'>{birthdayDate.toLocaleDateString()}</Text>
+          <Text color='blue.300'>
+            {getFormattedDate(new Date(birthdayDate).toLocaleDateString())}
+          </Text>
         </Text>
         <View style={{ marginBottom: 10 }}>
           <Button

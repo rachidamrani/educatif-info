@@ -67,6 +67,12 @@ const adherentSlice = createSlice({
 
       return state
     },
+    resetCounterToZero: (state) => {
+      return {
+        ...state,
+        totalRevenue: 0,
+      }
+    },
   },
 })
 
@@ -79,6 +85,7 @@ export const {
   setIsSearchingToFalse,
   updateAdherent,
   pay,
+  resetCounterToZero,
 } = adherentSlice.actions
 const { reducer } = adherentSlice
 
