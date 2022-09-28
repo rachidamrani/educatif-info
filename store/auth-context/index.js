@@ -20,7 +20,7 @@ const AuthContextProvider = ({ children }) => {
           setAuthToken('connected')
           resolve('Connecté avec succée !')
         }
-      }, 3000)
+      }, 1000)
     })
   }
 
@@ -30,8 +30,8 @@ const AuthContextProvider = ({ children }) => {
 
   const value = {
     token: authToken,
-    // isAuthenticated: !!authToken,
-    isAuthenticated: true,
+    isAuthenticated: !!authToken,
+    // isAuthenticated: true,
     login,
     logout,
   }

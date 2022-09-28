@@ -33,7 +33,7 @@ const AdherentItem = ({ adherent, control }) => {
             </Pressable> */}
             <Button
               variant='link'
-              marginRight={-2}
+              marginRight={-3}
               size='xs'
               colorScheme='coolGray'
               _text={{
