@@ -73,6 +73,13 @@ const adherentSlice = createSlice({
         totalRevenue: 0,
       }
     },
+    updateStoredState: (state, action) => {
+      return {
+        ...state,
+        adherentsList: action.payload.adherentsList,
+        totalRevenue: action.payload.totalRevenue,
+      }
+    },
   },
 })
 
@@ -86,6 +93,7 @@ export const {
   updateAdherent,
   pay,
   resetCounterToZero,
+  updateStoredState,
 } = adherentSlice.actions
 const { reducer } = adherentSlice
 

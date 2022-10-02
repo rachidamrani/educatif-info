@@ -14,7 +14,7 @@ import AdherentsList from './screens/AdherentsList'
 
 import UpdateProfileScreen from './screens/UpdateProfileScreen'
 
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { store } from './store/adherents'
 import LyceeScreen from './screens/LyceeScreen'
 import CollegeScreen from './screens/CollegeScreen'
@@ -25,7 +25,23 @@ import { NativeBaseProvider } from 'native-base'
 import { useFonts } from 'expo-font'
 import AppLoading from 'expo-app-loading'
 
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { updateStoredState } from './store/adherents/adherentSlice'
+
 const Stack = createNativeStackNavigator()
+
+store.subscribe(async () => {
+  await AsyncStorage.setItem('appState', JSON.stringify(store.getState()))
+})
+
+async function getSoredData() {
+  const json = await AsyncStorage.getItem('appState')
+  const parsedState = JSON.parse(json)
+  const { adherentsList, totalRevenue } = parsedState.adherents
+  store.dispatch(updateStoredState({ adherentsList, totalRevenue }))
+}
+
+getSoredData()
 
 function AuthStack() {
   return (
@@ -135,10 +151,6 @@ function AuthenticatedStack() {
 
 function Navigation() {
   const authCtx = useContext(AuthContext)
-
-  // const { adherentsList } = useSelector((state) => state.adherents)
-
-  // console.log(adherentsList)
 
   return (
     <NavigationContainer>
