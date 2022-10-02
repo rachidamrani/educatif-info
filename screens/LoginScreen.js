@@ -17,7 +17,7 @@ const LoginScreen = ({}) => {
   const [isLoading, setIsLoading] = useState(false)
   const [connexionError, setConnexionError] = useState(false)
 
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('educatif.info@edu.com')
   const [password, setPassword] = useState('')
 
   async function handleSubmit() {
